@@ -17,6 +17,8 @@ function Navbar() {
       <NavLink to="/">Home</NavLink>
       <NavLink to="/signup">Signup</NavLink>
       <NavLink to="/login">Login</NavLink>
+      <NavLink to="/create-project">Create Project</NavLink>
+
       <button onClick={handleLogout}>Logout</button>
     </div>
   );
