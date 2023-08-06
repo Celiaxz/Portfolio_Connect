@@ -20,7 +20,7 @@ function Login() {
                 //if logged in successfully, store the token on local storage
                 localStorage.setItem("authToken", response.data.token);
                 //navigate to home for now, we'll see later where to redirect
-                navigate("/index")
+                navigate("/")
             }
         } catch (error) {
             console.error(error)
