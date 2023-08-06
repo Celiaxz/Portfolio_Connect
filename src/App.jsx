@@ -4,8 +4,6 @@ import HomePage from './pages/HomePage'
 import Signup from './pages/Signup'
 import Login from './pages/Login'
 import Navbar from './components/Navbar'
-import IndexPage from './pages/IndexPage'
-import UserPage from './pages/UserPage'
 
 function App() {
 
@@ -16,8 +14,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/index" element={<IndexPage />} />
-        <Route path="/userId/:userId" element={<UserPage />} />
       </Routes>
     </>
   )
