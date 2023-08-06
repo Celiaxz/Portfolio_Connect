@@ -1,16 +1,25 @@
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../contexts/auth.context"
+
 function HomePage() {
+    const { user, isLoading, isLoggedIn } = useContext(AuthContext)
+
     return (
         <>
-            <h1>Welcome to HomePage</h1>
-            <label>
-                Username:
-                <input type="text" />
-            </label>
-            <label>
-                Password:
-                <input type="password" />
-            </label>
-            <button>Login</button>
+            {isLoading ? <p>Loading...</p> :
+                <>
+                    <h1>Welcome to HomePage {user ? user.username : null}!</h1>
+                    <label>
+                        Username:
+                        <input type="text" />
+                    </label>
+                    <label>
+                        Password:
+                        <input type="password" />
+                    </label>
+                    <button>Login</button>
+                </>
+            }
         </>
     )
 }
