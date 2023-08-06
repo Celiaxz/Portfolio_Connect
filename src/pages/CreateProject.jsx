@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function CreateProject() {
   const [project, setProject] = useState("");
@@ -9,6 +10,7 @@ function CreateProject() {
   const [technologies, setTechnologies] = useState("");
   const [repositoryLink, setRepositoryLink] = useState("");
   const [projectFolder, setProjectFolder] = useState("");
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -29,6 +31,10 @@ function CreateProject() {
         body: payloadJson,
       });
       console.log("this is my POST response: ", response);
+      if (response.status === 201) {
+        const newProject = await response.json();
+        navigate(`/projects/`);
+      }
     } catch (error) {
       console.log("error while creating project: ", error);
     }
