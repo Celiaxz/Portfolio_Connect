@@ -1,11 +1,14 @@
 import axios from "axios"
-import { useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { AuthContext } from "../contexts/auth.context"
 
 function Login() {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessage, setErrorMessage] = useState(null)
     const navigate = useNavigate()
+    const { authenticateUser } = useContext(AuthContext)
 
     const handleLogin = async e => {
         e.preventDefault()
@@ -21,6 +24,7 @@ function Login() {
             }
         } catch (error) {
             console.error(error)
+            setErrorMessage(error.response.data.errorMessage);
         }
     }
 
@@ -38,6 +42,8 @@ function Login() {
                 </label>
                 <button type="submit">Login</button>
             </form>
+            {errorMessage && <p>{errorMessage}</p>}
+
         </>
     )
 }
