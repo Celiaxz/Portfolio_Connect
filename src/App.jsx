@@ -10,6 +10,7 @@ import UpdateProject from "./pages/UpdateProject";
 import SearchProject from "./pages/SearchProject";
 import UserPage from "./pages/UserPage";
 import GitHub from "./pages/GitHub";
+import OtherUsers from "./pages/OtherUsers";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="/my-projects/:id" element={<UserProject />} />
         <Route path="/github/:id" element={<GitHub />} />
+        <Route path="/otherUsers/:id" element={<OtherUsers />} />
       </Routes>
     </>
   );
