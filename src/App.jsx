@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import CreateProject from "./pages/CreateProject";
 import Projects from "./pages/Projects";
+import UpdateProject from "./pages/UpdateProject";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-project" element={<CreateProject />} />
+        <Route path="/project/:projectId" element={<UpdateProject />} />
         <Route path="/projects" element={<Projects />} />
       </Routes>
     </>
