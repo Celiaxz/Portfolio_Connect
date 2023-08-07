@@ -1,6 +1,6 @@
 
 
-function HomePage({ user }) {
+function HomePage({ user, isLoading }) {
 
 
     return (
