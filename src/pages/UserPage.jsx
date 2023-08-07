@@ -1,13 +1,20 @@
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../contexts/Auth.context";
+import { useContext } from "react";
 
 function UserPage() {
-    const {userId} = useParams()
     const token = localStorage.getItem("authToken");
-    console.log(token)
+    const {user, isLoading, isLoggedIn} = useContext(AuthContext)
+    console.log(isLoggedIn)
 
     return (
         <>
-            <h1>Welcome {userId}</h1>
+        {isLoading ? (
+            <p>Loading...</p>
+        ) : (
+            <h1>Welcome {user ? user.username : null}</h1>
+        )
+        }
         </>
     )
 }
