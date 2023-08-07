@@ -8,6 +8,8 @@ function ProjectForm(props) {
   const { user } = useContext(AuthContext);
 
   const { project } = props;
+
+  //  const [project, setProject] = useState(props.project ?? "");
   const [title, setTitle] = useState(project?.title ?? "");
   const [description, setDescription] = useState(project?.description ?? "");
   const [technologies, setTechnologies] = useState(project?.technologies ?? "");
