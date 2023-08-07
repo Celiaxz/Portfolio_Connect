@@ -1,14 +1,12 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../contexts/Auth.context";
 
-function Login() {
+function Login({ setIsLoggedIn }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
-  const { authenticateUser } = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -22,6 +20,7 @@ function Login() {
       if (response.status === 202) {
         //if logged in successfully, store the token on local storage
         localStorage.setItem("authToken", response.data.token);
+        setIsLoggedIn(true)
         //navigate to home for now, we'll see later where to redirect
         navigate("/");
       }

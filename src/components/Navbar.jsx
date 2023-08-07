@@ -1,14 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 
-function Navbar({ isLoggedIn, setIsLoggedIn }) {
-
+function Navbar({ isLoggedIn, setIsLoggedIn, setUser }) {
     const navigate = useNavigate();
-
     const handleLogout = () => {
         console.log("logging out");
         localStorage.removeItem("authToken");
+        setUser(null)
         setIsLoggedIn(false)
-        navigate("/login");
+        navigate("/");
     };
 
     return (

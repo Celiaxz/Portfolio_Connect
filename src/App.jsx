@@ -11,15 +11,15 @@ import { useContext } from "react";
 import { AuthContext } from "./contexts/Auth.context";
 
 function App() {
-  const { isLoggedIn, user, setIsLoggedIn, isLoading } = useContext(AuthContext);
+  const { isLoggedIn, user, setUser, setIsLoggedIn, isLoading } = useContext(AuthContext);
 
   return (
     <>
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser} />
       <Routes>
         <Route path="/" element={<HomePage user={user} isLoading={isLoading} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/create-project" element={<CreateProject />} />
         <Route path="/project/:projectId" element={<UpdateProject />} />
         <Route path="/projects" element={<Projects />} />
