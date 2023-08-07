@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 function UserPage() {
   const { id } = useParams();
   const { isLoading } = useContext(AuthContext);
@@ -25,15 +25,16 @@ function UserPage() {
       ) : (
         <>
           <h1>Welcome to {wantedUser ? wantedUser.username : null}'s page</h1>
-          <h2>Projects</h2>
-          {projects.map((project) => (
+
+          <Link to={`/my-projects/${id}`}>My Projects</Link>
+          {/* {projects.map((project) => (
             <div key={project._id} className="projects-list">
               <p>{project.title}</p>
               <p>{project.technologies}</p>
               <p>{project.repositoryLink}</p>
               <p>{project.projectFolder}</p>
             </div>
-          ))}
+          ))} */}
         </>
       )}
     </>
