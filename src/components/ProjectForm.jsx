@@ -1,9 +1,11 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/auth.context";
 
 function ProjectForm(props) {
+  const { user } = useContext(AuthContext);
   const { project } = props;
   //   const [project, setProject] = useState(props.project ?? "");
   const [title, setTitle] = useState(project?.title ?? "");
@@ -25,17 +27,19 @@ function ProjectForm(props) {
         technologies,
         repositoryLink,
         projectFolder,
+
       };
       const payloadJson = JSON.stringify(payload);
       console.log("payload: ", payloadJson);
       let response;
       if (props.isNewProject) {
+        const newProject = { ...payload, userId: user._id }
         response = await fetch("http://localhost:5005/project/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: payloadJson,
+          body: JSON.stringify(newProject),
         });
       } else {
         response = await fetch(
