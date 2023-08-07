@@ -1,40 +1,21 @@
-import axios from "axios";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
-  const { authenticateUser } = useContext(AuthContext);
+  const { handleLogin, errorMessage } = useContext(AuthContext);
 
-  const handleLogin = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const currentUser = { username, password };
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5005/auth/login",
-        currentUser
-      );
-      if (response.status === 202) {
-        //if logged in successfully, store the token on local storage
-        localStorage.setItem("authToken", response.data.token);
-        //navigate to home for now, we'll see later where to redirect
-        navigate("/");
-      }
-    } catch (error) {
-      console.error(error);
-      setErrorMessage(error.response.data.errorMessage);
-    }
+    await handleLogin(currentUser);
   };
 
   return (
     <>
       <h1>Login</h1>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleSubmit}>
         <label>
           Username:
           <input
