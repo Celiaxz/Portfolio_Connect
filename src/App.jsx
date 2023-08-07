@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import CreateProject from "./pages/CreateProject";
 import Projects from "./pages/Projects";
+import Project from "./pages/Project";
 import UpdateProject from "./pages/UpdateProject";
 import SearchProject from "./pages/SearchProject";
 
@@ -18,7 +19,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-project" element={<CreateProject />} />
-        <Route path="/project/:projectId" element={<UpdateProject />} />
+        <Route path="/projects/:projectId/update" element={<UpdateProject />} />
+        <Route path="/projects/:projectId" element={<Project />}></Route>
         <Route path="/projects" element={<Projects />} />
         <Route path="/search-projects" element={<SearchProject />} />
       </Routes>

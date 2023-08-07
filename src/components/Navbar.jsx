@@ -3,16 +3,15 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
 
 function Navbar() {
-  const { isLoggedIn, user } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const { user, isLoggedIn, handleLogout } = useContext(AuthContext);
 
-  const handleLogout = () => {
-    console.log("logging out");
-    localStorage.removeItem("authToken");
-    navigate("/login");
-  };
-
-  return (
+  return isLoggedIn ? (
+    <div className="navbar">
+      <NavLink to="/create-project">Create Project</NavLink>
+      <NavLink to={`/user/${user._id}`}>Profile</NavLink>
+      <button onClick={handleLogout}>Logout</button>
+    </div>
+  ) : (
     <div className="navbar">
       <NavLink to="/">Home</NavLink>
       <NavLink to="/signup">Signup</NavLink>

@@ -54,7 +54,6 @@ const AuthContextWrapper = ({ children }) => {
                     }
                 })
                 //if it's all good, the response.data is token status + the currentUser
-                console.log("the token status is", response.data);
                 setIsLoggedIn(true)
                 setUser(response.data.currentUser)
             } catch (error) {
