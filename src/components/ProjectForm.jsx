@@ -1,9 +1,11 @@
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/Auth.context";
 
 function ProjectForm(props) {
+  const {user} = useContext(AuthContext)
   const { project } = props;
   //   const [project, setProject] = useState(props.project ?? "");
   const [title, setTitle] = useState(project?.title ?? "");
@@ -25,6 +27,7 @@ function ProjectForm(props) {
         technologies,
         repositoryLink,
         projectFolder,
+        userId: user._id
       };
       const payloadJson = JSON.stringify(payload);
       console.log("payload: ", payloadJson);

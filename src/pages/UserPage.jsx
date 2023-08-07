@@ -5,21 +5,22 @@ import { useParams } from "react-router-dom";
 function UserPage() {
     const {id} = useParams()
     const {isLoading} = useContext(AuthContext)
+    const [wantedUser, setWantedUser] = useState(null);
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
-        async function fetchProjects() {
+        async function fetchUser() {
           const response = await fetch(
-            `http://localhost:5005/project/userId/${id}`
+            `http://localhost:5005/user/${id}`
           );
           if (response.status === 200) {
             const parsed = await response.json();
-            console.log("parsed data :", parsed);
-            setProjects(parsed);
+            setWantedUser(parsed);
+            setProjects(parsed.projects)
           }
         }
-    
-        fetchProjects();
+        fetchUser();
+        console.log(wantedUser)
     }, []);
 
     return (
@@ -28,7 +29,7 @@ function UserPage() {
             <p>Loading...</p>
         ) : (
             <>
-                <h1>Welcome to UserPage</h1>
+                <h1>Welcome to {wantedUser ? wantedUser.username : null}'s page</h1>
                 <h2>Projects</h2>
                 {projects.map((project) => (
                     <div key={project._id} className="projects-list">
