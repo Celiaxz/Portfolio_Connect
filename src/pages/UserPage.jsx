@@ -26,7 +26,7 @@ function UserPage() {
       ) : (
         <>
           <h1>Welcome to {wantedUser ? wantedUser.username : null}'s page</h1>
-
+          <h2>Projects</h2>
           <Link to={`/my-projects/${id}`}>My Projects</Link>
           {/* {projects.map((project) => (
             <div key={project._id} className="projects-list">
@@ -36,9 +36,9 @@ function UserPage() {
               <p>{project.projectFolder}</p>
             </div>
           ))} */}
-
-
         </>
-    )
+      )}
+    </>
+  );
 }
 export default UserPage;
