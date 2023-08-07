@@ -1,16 +1,11 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import React, { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/auth.context";
 
-
-import { AuthContext } from "../contexts/Auth.context";
-
 function ProjectForm(props) {
   const { user } = useContext(AuthContext);
-  const { user } = useContext(AuthContext)
 
   const { project } = props;
 
