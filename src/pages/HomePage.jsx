@@ -1,7 +1,9 @@
+import { useContext } from "react";
+import { AuthContext } from "../contexts/auth.context";
 
 
-function HomePage({ user, isLoading }) {
-
+function HomePage() {
+    const { user, isLoading } = useContext(AuthContext);
 
     return (
         <>
