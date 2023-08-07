@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../contexts/auth.context";
+import { AuthContext } from "../contexts/Auth.context";
 import { useParams } from "react-router-dom";
 
 function UserPage() {
+
     const {id} = useParams()
     const {isLoading} = useContext(AuthContext)
     const [wantedUser, setWantedUser] = useState(null);
@@ -23,8 +24,13 @@ function UserPage() {
         console.log(wantedUser)
     }, []);
 
-    return (
-        <>
+
+    fetchProjects();
+  }, []);
+
+  return (
+    <>
+
         {isLoading ? (
             <p>Loading...</p>
         ) : (
@@ -43,8 +49,11 @@ function UserPage() {
             </>            
         )
         }
+
         </>
-    )
+      )}
+    </>
+  );
 }
 
 export default UserPage;
