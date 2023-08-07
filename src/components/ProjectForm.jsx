@@ -3,7 +3,9 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+
 import { AuthContext } from "../contexts/Auth.context";
+
 
 function ProjectForm(props) {
   const { user } = useContext(AuthContext);
@@ -31,17 +33,19 @@ function ProjectForm(props) {
         repositoryLink,
         projectFolder,
         userId: user._id,
+
       };
       const payloadJson = JSON.stringify(payload);
       console.log("payload: ", payloadJson);
       let response;
       if (props.isNewProject) {
+        const newProject = { ...payload, userId: user._id }
         response = await fetch("http://localhost:5005/project/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: payloadJson,
+          body: JSON.stringify(newProject),
         });
       } else {
         response = await fetch(

@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
+
 import { Link, useParams } from "react-router-dom";
 function UserPage() {
   const { id } = useParams();
@@ -35,9 +36,9 @@ function UserPage() {
               <p>{project.projectFolder}</p>
             </div>
           ))} */}
+
+
         </>
-      )}
-    </>
-  );
+    )
 }
 export default UserPage;
