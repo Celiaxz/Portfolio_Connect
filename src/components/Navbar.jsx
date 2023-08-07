@@ -3,11 +3,12 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/auth.context";
 
 function Navbar() {
-    const { isLoggedIn, handleLogout } = useContext(AuthContext);
+    const { user, isLoggedIn, handleLogout } = useContext(AuthContext);
 
   return isLoggedIn ? (
     <div className="navbar">
       <NavLink to="/create-project">Create Project</NavLink>
+      <NavLink to={`/user/${user._id}`}>Profile</NavLink>
 
       <button onClick={handleLogout}>Logout</button>
     </div>

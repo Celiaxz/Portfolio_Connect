@@ -1,14 +1,16 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../contexts/auth.context";
 import { useParams } from "react-router-dom";
 
-function UserPage({ user, isLoading }) {
-    const params = useParams()
+function UserPage() {
+    const {id} = useParams()
+    const {isLoading} = useContext(AuthContext)
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
         async function fetchProjects() {
           const response = await fetch(
-            `http://localhost:5005/project/userId/${params.id}`
+            `http://localhost:5005/project/userId/${id}`
           );
           if (response.status === 200) {
             const parsed = await response.json();
