@@ -36,7 +36,7 @@ const AuthContextWrapper = ({ children }) => {
             }
         } catch (error) {
             console.error(error);
-            setErrorMessage(error.response.data.errorMessage);
+            setErrorMessage(error.response?.data?.errorMessage);
         }
     };
 
@@ -72,7 +72,7 @@ const AuthContextWrapper = ({ children }) => {
         authenticateUser()
     }, [])
     return (
-        <AuthContext.Provider value={{ user, isLoading, isLoggedIn, setIsLoggedIn, handleLogout, handleLogin, errorMessage }
+        <AuthContext.Provider value={{ user, isLoading, isLoggedIn, handleLogout, handleLogin, errorMessage }
         }>
             {children}
         </AuthContext.Provider>
