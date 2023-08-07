@@ -7,20 +7,24 @@ import Navbar from "./components/Navbar";
 import CreateProject from "./pages/CreateProject";
 import Projects from "./pages/Projects";
 import UpdateProject from "./pages/UpdateProject";
+import { useContext } from "react";
+import { AuthContext } from "./contexts/Auth.context";
 import UserPage from "./pages/UserPage";
 
 function App() {
+  const { isLoggedIn, user, setIsLoggedIn, isLoading } = useContext(AuthContext);
+
   return (
     <>
-      <Navbar />
+      <Navbar user={user} isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage user={user} isLoading={isLoading} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/create-project" element={<CreateProject />} />
         <Route path="/project/:projectId" element={<UpdateProject />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path="/user" element={<UserPage />} />
+        <Route path="/user/:id" element={<UserPage user={user} isLoading={isLoading}/>} />
       </Routes>
     </>
   );
