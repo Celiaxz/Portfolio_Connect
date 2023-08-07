@@ -2,9 +2,13 @@ import axios from "axios";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+// import { AuthContext } from "../contexts/Auth.context";
 
 function ProjectForm(props) {
+  // const authContext = useContext(AuthContext);
+  // const { authToken } = authContext;
   const { project } = props;
+
   //   const [project, setProject] = useState(props.project ?? "");
   const [title, setTitle] = useState(project?.title ?? "");
   const [description, setDescription] = useState(project?.description ?? "");
@@ -44,6 +48,7 @@ function ProjectForm(props) {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
+              // Authorization: `Bearer ${authToken}`,
             },
             body: payloadJson,
           }
