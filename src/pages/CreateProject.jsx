@@ -33,7 +33,7 @@ function CreateProject() {
       console.log("this is my POST response: ", response);
       if (response.status === 201) {
         const newProject = await response.json();
-        navigate(`/projects/`);
+        navigate("/projects");
       }
     } catch (error) {
       console.log("error while creating project: ", error);

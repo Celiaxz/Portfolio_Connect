@@ -45,3 +45,6 @@
   display: flex;
   justify-content: space-evenly;
 }
+.projects-list {
+  border: 10px solid rgb(136, 40, 79);
+}

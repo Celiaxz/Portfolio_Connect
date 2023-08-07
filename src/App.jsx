@@ -5,6 +5,7 @@ import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import CreateProject from "./pages/CreateProject";
+import Projects from "./pages/Projects";
 
 function App() {
   return (
