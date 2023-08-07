@@ -3,7 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/auth.context";
 
 function Navbar() {
-    const { user, isLoggedIn, handleLogout } = useContext(AuthContext);
+  const { user, isLoggedIn, handleLogout } = useContext(AuthContext);
 
   return isLoggedIn ? (
     <div className="navbar">

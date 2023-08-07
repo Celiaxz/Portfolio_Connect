@@ -8,6 +8,7 @@ import CreateProject from "./pages/CreateProject";
 import Projects from "./pages/Projects";
 import UpdateProject from "./pages/UpdateProject";
 import UserPage from "./pages/UserPage";
+import SearchProject from "./pages/SearchProject";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/project/:projectId" element={<UpdateProject />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/user/:id" element={<UserPage />} />
+        <Route path="/search-projects" element={<SearchProject />} />
       </Routes>
     </>
   );
