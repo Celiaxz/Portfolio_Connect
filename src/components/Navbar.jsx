@@ -7,6 +7,7 @@ function Navbar() {
     <div className="navbar">
       <NavLink to="/create-project">Create Project</NavLink>
       <NavLink to={`/user/${user._id}`}>Profile</NavLink>
+      <NavLink to={`/github/${user._id}`}>Github Projects</NavLink>
       <button onClick={handleLogout}>Logout</button>
     </div>
   ) : (
