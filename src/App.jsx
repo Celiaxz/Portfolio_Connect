@@ -7,11 +7,15 @@ import Navbar from "./components/Navbar";
 import CreateProject from "./pages/CreateProject";
 import Projects from "./pages/Projects";
 import UpdateProject from "./pages/UpdateProject";
+import { useContext } from "react";
+import { AuthContext } from "./contexts/Auth.context";
 
 function App() {
+  const { isLoggedIn, user, setIsLoggedIn } = useContext(AuthContext);
+
   return (
     <>
-      <Navbar />
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<Signup />} />

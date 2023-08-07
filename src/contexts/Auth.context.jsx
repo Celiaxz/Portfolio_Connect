@@ -5,6 +5,7 @@ const AuthContext = createContext()
 
 const AuthContextWrapper = ({ children }) => {
     const [user, setUser] = useState(null);
+    //user will be an object {user_id, username, email}
     const [isLoading, setIsLoading] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -40,7 +41,7 @@ const AuthContextWrapper = ({ children }) => {
         authenticateUser()
     }, [])
     return (
-        <AuthContext.Provider value={{ authenticateUser, user, isLoading, isLoggedIn, setIsLoggedIn }
+        <AuthContext.Provider value={{ user, isLoading, isLoggedIn, setIsLoggedIn }
         }>
             {children}
         </AuthContext.Provider >

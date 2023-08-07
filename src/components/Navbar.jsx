@@ -1,25 +1,32 @@
 import { NavLink, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../contexts/Auth.context";
 
-function Navbar() {
-    const { isLoggedIn, user } = useContext(AuthContext);
+function Navbar({ isLoggedIn, setIsLoggedIn }) {
+
     const navigate = useNavigate();
 
     const handleLogout = () => {
         console.log("logging out");
         localStorage.removeItem("authToken");
+        setIsLoggedIn(false)
         navigate("/login");
     };
 
     return (
         <div className="navbar">
             <NavLink to="/">Home</NavLink>
-            <NavLink to="/signup">Signup</NavLink>
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/create-project">Create Project</NavLink>
+            {isLoggedIn ?
+                <>
+                    <button onClick={handleLogout}>Logout</button>
+                    <NavLink to="/create-project">Create Project</NavLink>
+                </>
+                :
+                <>
+                    <NavLink to="/signup">Signup</NavLink>
+                    <NavLink to="/login">Login</NavLink>
+                </>
+            }
             <NavLink to="/projects">Search for a projet</NavLink>
-            <button onClick={handleLogout}>Logout</button>
+
         </div>
     );
 }
