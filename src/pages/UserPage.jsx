@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 function UserPage({ user, isLoading }) {
     const params = useParams()
     const [projects, setProjects] = useState([]);
-    console.log(params)
 
     useEffect(() => {
         async function fetchProjects() {
@@ -36,7 +35,8 @@ function UserPage({ user, isLoading }) {
                         <p>{project.repositoryLink}</p>
                         <p>{project.projectFolder}</p>
                     </div>
-                ))}
+                    )
+                )}
             </>            
         )
         }

@@ -16,12 +16,12 @@ function App() {
 
   return (
     <>
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} setUser={setUser} />
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} user={user} setUser={setUser} />
       <Routes>
         <Route path="/" element={<HomePage user={user} isLoading={isLoading} />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-        <Route path="/create-project" element={<CreateProject />} />
+        <Route path="/create-project" user={user} element={<CreateProject />} />
         <Route path="/project/:projectId" element={<UpdateProject />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/user/:id" element={<UserPage user={user} isLoading={isLoading}/>} />
