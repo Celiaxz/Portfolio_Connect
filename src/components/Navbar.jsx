@@ -1,16 +1,9 @@
-import { NavLink, useNavigate } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../contexts/Auth.context";
+import { NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/auth.context";
 
-function Navbar({ isLoggedIn, setIsLoggedIn, user, setUser }) {
-    const navigate = useNavigate();
-    const handleLogout = () => {
-        console.log("logging out");
-        localStorage.removeItem("authToken");
-        setUser(null)
-        setIsLoggedIn(false)
-        navigate("/");
-    };
+function Navbar() {
+    const { isLoggedIn, handleLogout } = useContext(AuthContext);
 
   return isLoggedIn ? (
     <div className="navbar">
