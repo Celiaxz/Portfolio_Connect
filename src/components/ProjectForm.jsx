@@ -2,14 +2,13 @@ import axios from "axios";
 import React, { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../contexts/auth.context";
+
+import { AuthContext } from "../contexts/Auth.context";
 
 function ProjectForm(props) {
   const { user } = useContext(AuthContext);
 
   const { project } = props;
-
-  //  const [project, setProject] = useState(props.project ?? "");
   const [title, setTitle] = useState(project?.title ?? "");
   const [description, setDescription] = useState(project?.description ?? "");
   const [technologies, setTechnologies] = useState(project?.technologies ?? "");
@@ -29,19 +28,18 @@ function ProjectForm(props) {
         technologies,
         repositoryLink,
         projectFolder,
-
+        userId: user._id,
       };
       const payloadJson = JSON.stringify(payload);
       console.log("payload: ", payloadJson);
       let response;
       if (props.isNewProject) {
-        const newProject = { ...payload, userId: user._id }
         response = await fetch("http://localhost:5005/project/create", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(newProject),
+          body: payloadJson,
         });
       } else {
         response = await fetch(
@@ -60,7 +58,7 @@ function ProjectForm(props) {
       console.log("this is my POST response: ", response);
       if (response.status === 200) {
         const newProject = await response.json();
-        navigate("/projects");
+        navigate(`/user/${user._id}`);
       }
     } catch (error) {
       console.log("error while creating project: ", error);
