@@ -79,8 +79,20 @@ function Project() {
             }
         } catch (error) {
             console.error(error)
+
         }
+      );
+      if (response.status === 201) {
+        const response = await axios.get(
+          `http://localhost:5005/project/${projectId}`
+        );
+        setAllComments(response.data.comments);
+        setCommentContent("");
+      }
+    } catch (error) {
+      console.error(error);
     }
+    
     //Editing the comment
     const handleEditComment = async (commentId) => {
         try {
@@ -107,15 +119,18 @@ function Project() {
         } catch (error) {
             console.error(error)
         }
-    }
 
-    useEffect(() => {
-        fetchProject()
-    }, [])
-
-    if (!currentProject) {
-        return <p>Loading...</p>
     }
+  };
+
+  useEffect(() => {
+    fetchProject();
+  }, []);
+
+  if (!currentProject) {
+    return <p>Loading...</p>;
+  }
+
 
     const { title, description, technologies, repositoryLink, projectFolder, userId } = currentProject
     return (
@@ -171,6 +186,7 @@ function Project() {
             </div>
         </>
     )
+
 }
 
-export default Project
+export default Project;
