@@ -24,6 +24,29 @@ function Projects() {
     navigate(`/project/${projectId}`);
   };
 
+  const deleteProjectHandler = async (projectId) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5005/project/delete/${projectId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (response.status === 200) {
+        // Project was deleted successfully, remove it from the state
+        setProjects((prevProjects) =>
+          prevProjects.filter((project) => project._id !== projectId)
+        );
+      } else {
+        console.log("Failed to delete the project");
+      }
+      navigate(`/projects`);
+    } catch (error) {
+      console.log("Error while deleting the project:", error);
+    }
+  };
+
   return (
     <>
       <h1> Projects </h1>
@@ -38,6 +61,12 @@ function Projects() {
             onClick={() => updateProjectHandler(project._id)}
           >
             Edit
+          </button>
+          <button
+            type="submit"
+            onClick={() => deleteProjectHandler(project._id)}
+          >
+            delete
           </button>
         </div>
       ))}
