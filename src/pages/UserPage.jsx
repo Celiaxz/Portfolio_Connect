@@ -33,10 +33,9 @@ function UserPage() {
                 <h2>Projects</h2>
                 {projects.map((project) => (
                     <div key={project._id} className="projects-list">
-                        <p>{project.title}</p>
-                        <p>{project.technologies}</p>
-                        <p>{project.repositoryLink}</p>
-                        <p>{project.projectFolder}</p>
+                        <p>Title: {project.title}</p>
+                        <p>Technologies used: {project.technologies}</p>
+                        <p>Link to repo: {project.repositoryLink}</p>
                     </div>
                     )
                 )}
