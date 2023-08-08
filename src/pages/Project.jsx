@@ -15,6 +15,7 @@ function Project() {
         try {
             const response = await axios.post(`http://localhost:5005/project/${projectId}/comment`, {
                 userId: user._id,
+                projectId: projectId,
                 comment: commentContent
             })
             if (response.status === 201) {
@@ -71,7 +72,7 @@ function Project() {
             <Link to={projectFolder}>Download project</Link>
             <p>Creator: {userId.username}</p>
             <div className="comments_section">
-                {comments.map(comment => {
+                {allComments && allComments.map(comment => {
                     return (
                         <div key={comment._id} className="one_comment" style={{ border: "solid teal 2px" }}>
                             <p>From {comment.userId}</p>
