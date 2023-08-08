@@ -22,14 +22,23 @@ function UserPage() {
       {!wantedUser ? (
         <p>Loading...</p>
       ) : (
-        <>
+        <div className="profile-container">
           <h1>Welcome to {wantedUser.username}'s page</h1>
-          
-          <button className={id !== user._id ? "hidden" : null} onClick={() => navigate(`/user/update`)}>'Update Profile</button>
+          <Link to={`/my-projects/${id}`}>Projects</Link>
+          <img style={{maxHeight: '200px', maxWidth: '200px', borderRadius: '50%'}} src={wantedUser.image} alt="profile image" />
+          <ul style={{listStyle: 'none'}}>
+            Skills:
+            {
+              user.skills.map((skill, index) => {
+                return <li key={index}>{skill}</li>
+              })
+            }
+          </ul>
+          <p>{user.aboutMe}</p>
 
-          <Link to={`/my-projects/${id}`}>My Projects</Link>
+          <button className={id !== user._id ? "hidden" : null} onClick={() => navigate(`/user/update`)}>Update Profile</button>
           
-        </>
+        </div>
       )}
     </>
   );
