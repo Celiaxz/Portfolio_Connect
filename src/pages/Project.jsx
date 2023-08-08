@@ -1,37 +1,23 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/auth.context";
 
 function Project() {
     const [currentProject, setCurrentProject] = useState(null);
-    const [commentContent, setCommentContent] = useState("");
-    const [allComments, setAllComments] = useState([]);
     const { user } = useContext(AuthContext);
     const { projectId } = useParams()
-    //Edit states here
+    //Comment states
+    const [commentContent, setCommentContent] = useState("");
+    const [allComments, setAllComments] = useState([]);
     const [editComment, setEditComment] = useState(false);
     const [commentToEdit, setCommentToEdit] = useState(null);
     const [editedComment, setEditedComment] = useState("");
 
-    const handleNewComment = async (e) => {
-        e.preventDefault()
-        try {
-            const response = await axios.post(`http://localhost:5005/project/${projectId}/comment`, {
-                userId: user._id,
-                projectId: projectId,
-                comment: commentContent
-            })
-            if (response.status === 201) {
-                const response = await axios.get(`http://localhost:5005/project/${projectId}`)
-                setAllComments(response.data.comments)
-                setCommentContent("")
-            }
-        } catch (error) {
-            console.error(error)
-        }
-    }
+    const navigate = useNavigate()
 
+    //PROJECT PART
+    //FETCH PROJECT
     const fetchProject = async () => {
         try {
             const response = await axios.get(`http://localhost:5005/project/${projectId}`)
@@ -44,6 +30,57 @@ function Project() {
         }
     }
 
+    //Updating project button redirect to form page
+    const handleUpdateButton = () => {
+        navigate(`/projects/${projectId}/update`)
+    }
+
+    //Deleting the project 
+    const handleDeleteButton = async () => {
+        try {
+            //Deleting all comments related to the project first when there are comments
+            if (allComments.length > 0) {
+                allComments.forEach(async (comment) => {
+                    try {
+                        const responseComments = await axios.delete(`http://localhost:5005/project/${projectId}/comments/delete`)
+                        if (responseComments.status === 204) {
+                            console.log("comments deleted")
+                        }
+                    } catch (error) {
+                        console.error(error)
+                    }
+                })
+            }
+            //After deleting all comments, then delete the current project
+            const response = await axios.delete(`http://localhost:5005/project/delete/${projectId}`)
+            if (response.status === 200) {
+                navigate(`/user/${user._id}`)
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    //COMMENT PART
+    //Create new comment
+    const handleNewComment = async (e) => {
+        e.preventDefault()
+        try {
+            const response = await axios.post(`http://localhost:5005/project/${projectId}/comment`, {
+                userId: user._id,
+                projectId: projectId,
+                comment: commentContent
+            })
+            if (response.status === 201) {
+                const response = await axios.get(`http://localhost:5005/project/${projectId}`)
+                //Update allcomment state to refresh the comment section
+                setAllComments(response.data.comments)
+                setCommentContent("")
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
     //Editing the comment
     const handleEditComment = async (commentId) => {
         try {
@@ -93,8 +130,8 @@ function Project() {
             <Link to={projectFolder}>Download project</Link>
             <p>Creator: {userId.username}</p>
             {user && userId._id === user._id && <>
-                <button>Update Project</button>
-                <button>Delete Project</button>
+                <button onClick={handleUpdateButton}>Update Project</button>
+                <button onClick={handleDeleteButton}>Delete Project</button>
             </>}
             <div className="comments_section">
                 <h3>Comments: </h3>
