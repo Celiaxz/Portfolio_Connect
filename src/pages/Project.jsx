@@ -32,24 +32,13 @@ function Project() {
         }
     }
 
-    //TODO populate user from each comment
-    // const populateUserComment = async (commentId) => {
-    //     try {
-    //         const response = await axios.get(`http://localhost:5005/project/${projectId}/comment/${commentId}`)
-
-    //         return response.userId.username
-    //     } catch (error) {
-    //         console.error(error)
-    //     }
-    // }
-
     const fetchProject = async () => {
         try {
             const response = await axios.get(`http://localhost:5005/project/${projectId}`)
             if (response.status === 200) {
+                console.log(response.data)
                 setCurrentProject(response.data)
-                await setAllComments(response.data.comments)
-                allComments.forEach(comment => { console.log(comment.userId, user) })
+                setAllComments(response.data.comments)
             }
         } catch (error) {
             console.error(error)
@@ -92,7 +81,7 @@ function Project() {
         return <p>Loading...</p>
     }
 
-    const { title, description, technologies, repositoryLink, projectFolder, userId, comments } = currentProject
+    const { title, description, technologies, repositoryLink, projectFolder, userId } = currentProject
     return (
         <>
             <h2>Project : {title}</h2>
@@ -104,7 +93,12 @@ function Project() {
             <Link to={repositoryLink}>Link to repo</Link>
             <Link to={projectFolder}>Download project</Link>
             <p>Creator: {userId.username}</p>
+            {userId._id === user._id && <>
+                <button>Update Project</button>
+                <button>Delete Project</button>
+            </>}
             <div className="comments_section">
+                <h3>Comments: </h3>
                 {allComments && allComments.map(comment => {
                     return (
                         <div key={comment._id}>
@@ -116,12 +110,13 @@ function Project() {
                                     <button onClick={() => handleEditComment(comment._id)}>Save edit</button>
                                 </form> :
                                 <div className="one_comment" style={{ border: "solid teal 2px" }}>
-                                    <p>From {comment.userId}</p>
+                                    <p>From {comment.userId.username}</p>
                                     <p>{comment.comment}</p>
                                     <p>{comment.date}</p>
-                                    {comment.userId === user._id && <><button onClick={() => {
+                                    {user && userId._id === user._id && <><button onClick={() => {
                                         setEditComment(true)
                                         setCommentToEdit(comment._id)
+                                        setEditedComment(comment.comment)
                                     }}>Edit</button>
                                         <button onClick={() => handleDeleteComment(comment._id)}>Delete</button></>}
                                 </div>
