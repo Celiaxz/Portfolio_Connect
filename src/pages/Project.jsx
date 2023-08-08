@@ -44,7 +44,8 @@ function Project() {
             const response = await axios.get(`http://localhost:5005/project/${projectId}`)
             if (response.status === 200) {
                 setCurrentProject(response.data)
-                setAllComments(response.data.comments)
+                await setAllComments(response.data.comments)
+                allComments.forEach(comment => { console.log(comment.userId, user) })
             }
         } catch (error) {
             console.error(error)
@@ -74,10 +75,14 @@ function Project() {
             <div className="comments_section">
                 {allComments && allComments.map(comment => {
                     return (
-                        <div key={comment._id} className="one_comment" style={{ border: "solid teal 2px" }}>
-                            <p>From {comment.userId}</p>
-                            <p>{comment.comment}</p>
-                            <p>{comment.date}</p>
+                        <div key={comment._id}>
+                            <div className="one_comment" style={{ border: "solid teal 2px" }}>
+                                <p>From {comment.userId}</p>
+                                <p>{comment.comment}</p>
+                                <p>{comment.date}</p>
+                                {comment.userId === user._id && <><button>Edit</button>
+                                    <button>Delete</button></>}
+                            </div>
                         </div>
                     )
                 })}

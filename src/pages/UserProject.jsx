@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
 import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function UserProject() {
   const { id } = useParams();
@@ -48,6 +48,10 @@ function UserProject() {
     }
   };
 
+  const redirectToProject = (projectId) => {
+    navigate(`/projects/${projectId}`)
+  }
+
   return (
     <>
       {isLoading ? (
@@ -58,10 +62,11 @@ function UserProject() {
           <h2>Projects</h2>
           {projects.map((project) => (
             <div key={project._id} className="projects-list">
-              <p>{project.title}</p>
+              <p><Link to={`/projects/${project._id}`}>{project.title}</Link></p>
               <p>{project.technologies}</p>
               <p>{project.repositoryLink}</p>
               <p>{project.projectFolder}</p>
+              <button onClick={() => redirectToProject(project._id)}>See more</button>
               <button
                 type="submit"
                 onClick={() => updateProjectHandler(project._id)}
