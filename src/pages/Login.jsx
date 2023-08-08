@@ -32,8 +32,8 @@ function Login() {
         height: "100vh",
       }}
     >
-      <h1 style={{ fontSize: "5rem", marginBottom: "5rem" }}>Login</h1>
-      <Paper padding="lg" shadow="xs" style={{ width: "500px" }}>
+      <h1 style={{ fontSize: "4rem", marginBottom: "5rem" }}>Login</h1>
+      <Paper padding="lg" shadow="xs" style={{ width: "550px" }}>
         <form onSubmit={handleSubmit}>
           <Stack spacing="lg">
             <TextInput
