@@ -1,5 +1,14 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
+import {
+  TextInput,
+  Paper,
+  Title,
+  Container,
+  Button,
+  Stack,
+  Text,
+} from "@mantine/core";
 
 function Login() {
   const [username, setUsername] = useState("");
@@ -13,29 +22,43 @@ function Login() {
   };
 
   return (
-    <>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </label>
-        <button type="submit">Login</button>
-      </form>
-      {errorMessage && <p>{errorMessage}</p>}
-    </>
+    <Container
+      size="lg"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      {" "}
+    </Container>
   );
 }
+//     <>
+//       <h1>Login</h1>
+//       <form onSubmit={handleSubmit}>
+//         <label>
+//           Username:
+//           <input
+//             value={username}
+//             onChange={(e) => setUsername(e.target.value)}
+//           />
+//         </label>
+//         <label>
+//           Password:
+//           <input
+//             type="password"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//           />
+//         </label>
+//         <button type="submit">Login</button>
+//       </form>
+//       {errorMessage && <p>{errorMessage}</p>}
+//     </>
+//   );
+// }
 
 export default Login;
