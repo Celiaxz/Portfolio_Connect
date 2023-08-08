@@ -2,37 +2,34 @@ import axios from "axios";
 import React, { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { AuthContext } from "../contexts/Auth.context";
 
 function ProjectForm(props) {
   const { user } = useContext(AuthContext);
-
   const { project } = props;
+
   const [title, setTitle] = useState(project?.title ?? "");
   const [description, setDescription] = useState(project?.description ?? "");
   const [technologies, setTechnologies] = useState(project?.technologies ?? "");
-  const [repositoryLink, setRepositoryLink] = useState(
-    project?.repositoryLink ?? ""
-  );
-  const [projectFolder, setProjectFolder] = useState(
-    project?.projectFolder ?? ""
-  );
+  const [repositoryLink, setRepositoryLink] = useState(project?.repositoryLink ?? "");
+  const [projectFolder, setProjectFolder] = useState(project?.projectFolder ?? "");
+
   const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const payload = {
+      title,
+      description,
+      technologies,
+      repositoryLink,
+      projectFolder,
+      userId: user._id,
+    };
+    const payloadJson = JSON.stringify(payload);
     try {
-      const payload = {
-        title,
-        description,
-        technologies,
-        repositoryLink,
-        projectFolder,
-        userId: user._id,
-      };
-      const payloadJson = JSON.stringify(payload);
-      console.log("payload: ", payloadJson);
-      let response;
+      let response
       if (props.isNewProject) {
         response = await fetch("http://localhost:5005/project/create", {
           method: "POST",
@@ -41,7 +38,12 @@ function ProjectForm(props) {
           },
           body: payloadJson,
         });
-      } else {
+        if (response.status === 200) {
+          const data = await response.json()
+          navigate(`/projects/${data._id}`)
+        }
+      }
+      else {
         response = await fetch(
           `http://localhost:5005/project/update/${project._id}`,
           {
@@ -53,13 +55,11 @@ function ProjectForm(props) {
             body: payloadJson,
           }
         );
+        if (response.status === 200) {
+          navigate(`/projects/${project._id}`)
+        }
       }
 
-      console.log("this is my POST response: ", response);
-      if (response.status === 200) {
-        const newProject = await response.json();
-        navigate(`/user/${user._id}`);
-      }
     } catch (error) {
       console.log("error while creating project: ", error);
     }
@@ -67,46 +67,56 @@ function ProjectForm(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        value={title}
-        placeholder="title"
-        onChange={(e) => {
-          setTitle(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        value={description}
-        placeholder="description"
-        onChange={(e) => {
-          setDescription(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        value={technologies}
-        placeholder="technologies"
-        onChange={(e) => {
-          setTechnologies(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        value={repositoryLink}
-        placeholder="repositoryLink"
-        onChange={(e) => {
-          setRepositoryLink(e.target.value);
-        }}
-      />
-      <input
-        type="text"
-        value={projectFolder}
-        placeholder="projectFolder"
-        onChange={(e) => {
-          setProjectFolder(e.target.value);
-        }}
-      />
+      <label>Title:
+        <input
+          type="text"
+          value={title}
+          placeholder="title"
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+        />
+      </label>
+      <label>Description:
+        <input
+          type="text"
+          value={description}
+          placeholder="description"
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        />
+      </label>
+      <label>Technologies:
+        <input
+          type="text"
+          value={technologies}
+          placeholder="technologies"
+          onChange={(e) => {
+            setTechnologies(e.target.value);
+          }}
+        />
+      </label>
+      <label>Repository Link:
+        <input
+          type="text"
+          value={repositoryLink}
+          placeholder="repositoryLink"
+          onChange={(e) => {
+            setRepositoryLink(e.target.value);
+          }}
+        />
+      </label>
+      <label>Download link:
+        <input
+          type="text"
+          value={projectFolder}
+          placeholder="projectFolder"
+          onChange={(e) => {
+            setProjectFolder(e.target.value);
+          }}
+        />
+      </label>
       <button type="submit">Submit</button>
     </form>
   );
