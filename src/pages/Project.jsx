@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/Auth.context";
+import { BASE_URL } from "../config/config.index";
 function Project() {
   const [currentProject, setCurrentProject] = useState(null);
   const { user } = useContext(AuthContext);

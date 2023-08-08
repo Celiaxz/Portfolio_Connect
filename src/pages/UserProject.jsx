@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
+import { BASE_URL } from "../config/config.index";
 
 function UserProject() {
   const { id } = useParams();

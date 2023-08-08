@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
 import { useParams, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import { BASE_URL } from "../config/config.index";
 function OtherUsers() {
   const { id } = useParams();
   const [users, setUsers] = useState([]);

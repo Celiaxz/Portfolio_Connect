@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { BASE_URL } from "../config/config.index";
 function UserPage() {
   const { id } = useParams();
   const { user } = useContext(AuthContext);

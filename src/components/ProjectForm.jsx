@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/Auth.context";
+import { BASE_URL } from "../config/config.index";
 
 function ProjectForm(props) {
   const { user } = useContext(AuthContext);

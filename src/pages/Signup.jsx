@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { BASE_URL } from "../config/config.index";
 import {
   TextInput,
   PasswordInput,

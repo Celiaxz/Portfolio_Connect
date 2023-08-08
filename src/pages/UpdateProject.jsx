@@ -3,7 +3,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import ProjectForm from "../components/ProjectForm";
 import { useParams } from "react-router-dom";
-
+import { BASE_URL } from "../config/config.index";
 function UpdateProject() {
   const [project, setProject] = useState(undefined);
   const { projectId } = useParams();

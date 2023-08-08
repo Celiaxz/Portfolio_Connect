@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
+import { BASE_URL } from "../config/config.index";
 function UpdateUser() {
   const { user } = useContext(AuthContext);
   const [username, setUserame] = useState("");
