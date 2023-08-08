@@ -59,7 +59,7 @@ function Project() {
     //Editing the comment
     const handleEditComment = async (commentId) => {
         try {
-            const response = await axios.put(`http://localhost:5005/project/${projectId}/comment/${commentId}/update`, { comment: editedComment })
+            const response = await axios.patch(`http://localhost:5005/project/${projectId}/comment/${commentId}/update`, { comment: editedComment })
             if (response.status === 200) {
                 //fetching all comments again and set the state to refresh comments section
                 const response = await axios.get(`http://localhost:5005/project/${projectId}`)
