@@ -23,7 +23,7 @@ function UserProject() {
   }, []);
 
   const updateProjectHandler = (projectId) => {
-    navigate(`/project/${projectId}`);
+    navigate(`/projects/${projectId}/update`);
   };
 
   const deleteProjectHandler = async (projectId) => {
