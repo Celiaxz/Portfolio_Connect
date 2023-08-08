@@ -47,14 +47,14 @@ function Signup() {
       }}
     >
       {" "}
-      <h1 style={{ fontSize: "5rem", marginBottom: "7rem" }}>
+      <h1 style={{ fontSize: "5rem", marginBottom: "0.5rem" }}>
         Join our Portfolio Community
       </h1>
-      <h4 style={{ fontSize: "2rem", marginBottom: "7rem" }}>
+      <p style={{ fontSize: "2rem", marginBottom: "15rem" }}>
         {" "}
         Connect with like-minded individuals, showcase your portfolio, and grow
         together.
-      </h4>
+      </p>
       <Paper padding="lg" shadow="xs" style={{ width: "500px" }}>
         <form onSubmit={handleLogin}>
           <Stack spacing="lg">
