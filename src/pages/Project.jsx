@@ -9,6 +9,10 @@ function Project() {
     const [allComments, setAllComments] = useState([]);
     const { user } = useContext(AuthContext);
     const { projectId } = useParams()
+    //Edit states here
+    const [editComment, setEditComment] = useState(false);
+    const [commentToEdit, setCommentToEdit] = useState(null);
+    const [editedComment, setEditedComment] = useState("");
 
     const handleNewComment = async (e) => {
         e.preventDefault()
@@ -55,7 +59,14 @@ function Project() {
     //Editing the comment
     const handleEditComment = async (commentId) => {
         try {
-            const response = await axios.put(`http://localhost:5005/project/${projectId}/comment/${commentId}/update`)
+            const response = await axios.put(`http://localhost:5005/project/${projectId}/comment/${commentId}/update`, { comment: editedComment })
+            if (response.status === 200) {
+                //fetching all comments again and set the state to refresh comments section
+                const response = await axios.get(`http://localhost:5005/project/${projectId}`)
+                setAllComments(response.data.comments)
+                setCommentToEdit(null)
+                setEditComment(false)
+            }
         } catch (error) {
             console.error(error)
         }
@@ -97,13 +108,24 @@ function Project() {
                 {allComments && allComments.map(comment => {
                     return (
                         <div key={comment._id}>
-                            <div className="one_comment" style={{ border: "solid teal 2px" }}>
-                                <p>From {comment.userId}</p>
-                                <p>{comment.comment}</p>
-                                <p>{comment.date}</p>
-                                {comment.userId === user._id && <><button onClick={() => handleEditComment(comment._id)}>Edit</button>
-                                    <button onClick={() => handleDeleteComment(comment._id)}>Delete</button></>}
-                            </div>
+                            {editComment && commentToEdit === comment._id ?
+                                <form >
+                                    <label >
+                                        <input type="textarea" value={editedComment} onChange={e => setEditedComment(e.target.value)} />
+                                    </label>
+                                    <button onClick={() => handleEditComment(comment._id)}>Save edit</button>
+                                </form> :
+                                <div className="one_comment" style={{ border: "solid teal 2px" }}>
+                                    <p>From {comment.userId}</p>
+                                    <p>{comment.comment}</p>
+                                    <p>{comment.date}</p>
+                                    {comment.userId === user._id && <><button onClick={() => {
+                                        setEditComment(true)
+                                        setCommentToEdit(comment._id)
+                                    }}>Edit</button>
+                                        <button onClick={() => handleDeleteComment(comment._id)}>Delete</button></>}
+                                </div>
+                            }
                         </div>
                     )
                 })}
@@ -111,7 +133,7 @@ function Project() {
             <div className="new_comment"><p>Add new comment</p>
                 <form onSubmit={handleNewComment}>
                     <label>Comment :
-                        <input type="text" value={commentContent} onChange={e => setCommentContent(e.target.value)} />
+                        <input type="textarea" value={commentContent} onChange={e => setCommentContent(e.target.value)} />
                     </label>
                     <button type="submit">Post</button>
                 </form>
