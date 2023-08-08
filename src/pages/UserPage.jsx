@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/Auth.context";
 import { Link, useNavigate, useParams } from "react-router-dom";
 function UserPage() {
   const { id } = useParams();
-  const { isLoading, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [wantedUser, setWantedUser] = useState(null);
   const navigate = useNavigate();
 
@@ -16,7 +16,7 @@ function UserPage() {
       }
     }
     fetchUser();
-  }, []);
+  }, [id]);
   return (
     <>
       {!wantedUser ? (
@@ -24,8 +24,8 @@ function UserPage() {
       ) : (
         <>
           <h1>Welcome to {wantedUser.username}'s page</h1>
-
-          <button onClick={() => navigate(`/user/update`)}>{id === user._id ? 'Update Profile' : null}</button>
+          
+          <button className={id !== user._id ? "hidden" : null} onClick={() => navigate(`/user/update`)}>'Update Profile</button>
 
           <Link to={`/my-projects/${id}`}>My Projects</Link>
           
