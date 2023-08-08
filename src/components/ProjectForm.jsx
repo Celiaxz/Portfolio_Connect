@@ -11,8 +11,12 @@ function ProjectForm(props) {
   const [title, setTitle] = useState(project?.title ?? "");
   const [description, setDescription] = useState(project?.description ?? "");
   const [technologies, setTechnologies] = useState(project?.technologies ?? "");
-  const [repositoryLink, setRepositoryLink] = useState(project?.repositoryLink ?? "");
-  const [projectFolder, setProjectFolder] = useState(project?.projectFolder ?? "");
+  const [repositoryLink, setRepositoryLink] = useState(
+    project?.repositoryLink ?? ""
+  );
+  const [projectFolder, setProjectFolder] = useState(
+    project?.projectFolder ?? ""
+  );
 
   const navigate = useNavigate();
 
@@ -29,9 +33,9 @@ function ProjectForm(props) {
     };
     const payloadJson = JSON.stringify(payload);
     try {
-      let response
+      let response;
       if (props.isNewProject) {
-        response = await fetch("http://localhost:5005/project/create", {
+        response = await fetch(`${BASE_URL}/project/create`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -39,27 +43,22 @@ function ProjectForm(props) {
           body: payloadJson,
         });
         if (response.status === 200) {
-          const data = await response.json()
-          navigate(`/projects/${data._id}`)
+          const data = await response.json();
+          navigate(`/projects/${data._id}`);
         }
-      }
-      else {
-        response = await fetch(
-          `http://localhost:5005/project/update/${project._id}`,
-          {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-              // Authorization: `Bearer ${authToken}`,
-            },
-            body: payloadJson,
-          }
-        );
+      } else {
+        response = await fetch(`${BASE_URL}/project/update/${project._id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            // Authorization: `Bearer ${authToken}`,
+          },
+          body: payloadJson,
+        });
         if (response.status === 200) {
-          navigate(`/projects/${project._id}`)
+          navigate(`/projects/${project._id}`);
         }
       }
-
     } catch (error) {
       console.log("error while creating project: ", error);
     }
@@ -67,7 +66,8 @@ function ProjectForm(props) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Title:
+      <label>
+        Title:
         <input
           type="text"
           value={title}
@@ -77,7 +77,8 @@ function ProjectForm(props) {
           }}
         />
       </label>
-      <label>Description:
+      <label>
+        Description:
         <input
           type="text"
           value={description}
@@ -87,7 +88,8 @@ function ProjectForm(props) {
           }}
         />
       </label>
-      <label>Technologies:
+      <label>
+        Technologies:
         <input
           type="text"
           value={technologies}
@@ -97,7 +99,8 @@ function ProjectForm(props) {
           }}
         />
       </label>
-      <label>Repository Link:
+      <label>
+        Repository Link:
         <input
           type="text"
           value={repositoryLink}
@@ -107,7 +110,8 @@ function ProjectForm(props) {
           }}
         />
       </label>
-      <label>Download link:
+      <label>
+        Download link:
         <input
           type="text"
           value={projectFolder}

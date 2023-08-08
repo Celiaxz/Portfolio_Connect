@@ -11,7 +11,7 @@ function UserProject() {
   const navigate = useNavigate();
   useEffect(() => {
     async function fetchUser() {
-      const response = await fetch(`http://localhost:5005/user/${id}`);
+      const response = await fetch(`${BASE_URL}/user/${id}`);
       if (response.status === 200) {
         const parsed = await response.json();
         setWantedUser(parsed);
@@ -28,12 +28,9 @@ function UserProject() {
 
   const deleteProjectHandler = async (projectId) => {
     try {
-      const response = await fetch(
-        `http://localhost:5005/project/delete/${projectId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${BASE_URL}/project/delete/${projectId}`, {
+        method: "DELETE",
+      });
 
       if (response.status === 200) {
         // Project was deleted successfully, remove it from the state
@@ -49,8 +46,8 @@ function UserProject() {
   };
 
   const redirectToProject = (projectId) => {
-    navigate(`/projects/${projectId}`)
-  }
+    navigate(`/projects/${projectId}`);
+  };
 
   return (
     <>
@@ -62,11 +59,15 @@ function UserProject() {
           <h2>Projects</h2>
           {projects.map((project) => (
             <div key={project._id} className="projects-list">
-              <p><Link to={`/projects/${project._id}`}>{project.title}</Link></p>
+              <p>
+                <Link to={`/projects/${project._id}`}>{project.title}</Link>
+              </p>
               <p>{project.technologies}</p>
               <p>{project.repositoryLink}</p>
               <p>{project.projectFolder}</p>
-              <button onClick={() => redirectToProject(project._id)}>See more</button>
+              <button onClick={() => redirectToProject(project._id)}>
+                See more
+              </button>
               <button
                 type="submit"
                 onClick={() => updateProjectHandler(project._id)}

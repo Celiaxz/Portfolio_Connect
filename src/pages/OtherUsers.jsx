@@ -10,7 +10,7 @@ function OtherUsers() {
   const navigate = useNavigate();
   useEffect(() => {
     async function fetchAllUsers() {
-      const response = await fetch(`http://localhost:5005/user/users/all`);
+      const response = await fetch(`${BASE_URL}/user/users/all`);
       if (response.status === 200) {
         const parsed = await response.json();
         setUsers(parsed);

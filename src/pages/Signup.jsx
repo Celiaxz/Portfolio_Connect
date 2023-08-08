@@ -24,10 +24,7 @@ function Signup() {
     const newUser = { username, email, password, githubUsername };
 
     try {
-      const response = await axios.post(
-        "http://localhost:5005/auth/signup",
-        newUser
-      );
+      const response = await axios.post(`${BASE_URL}/auth/signup`, newUser);
       console.log("new user: ", response);
       navigate("/login");
     } catch (error) {

@@ -10,14 +10,14 @@ function UpdateProject() {
 
   const fetchProject = async () => {
     try {
-      const response = await axios.get(`http://localhost:5005/project/${projectId}`)
+      const response = await axios.get(`${BASE_URL}/project/${projectId}`);
       if (response.status === 200) {
-        setProject(response.data)
+        setProject(response.data);
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   useEffect(() => {
     fetchProject();

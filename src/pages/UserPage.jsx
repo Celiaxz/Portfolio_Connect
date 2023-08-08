@@ -9,7 +9,7 @@ function UserPage() {
 
   useEffect(() => {
     async function fetchUser() {
-      const response = await fetch(`http://localhost:5005/user/${id}`);
+      const response = await fetch(`${BASE_URL}/user/${id}`);
       if (response.status === 200) {
         const parsed = await response.json();
         setWantedUser(parsed);
@@ -24,11 +24,15 @@ function UserPage() {
       ) : (
         <>
           <h1>Welcome to {wantedUser.username}'s page</h1>
-          
-          <button className={id !== user._id ? "hidden" : null} onClick={() => navigate(`/user/update`)}>'Update Profile</button>
+
+          <button
+            className={id !== user._id ? "hidden" : null}
+            onClick={() => navigate(`/user/update`)}
+          >
+            'Update Profile
+          </button>
 
           <Link to={`/my-projects/${id}`}>My Projects</Link>
-          
         </>
       )}
     </>

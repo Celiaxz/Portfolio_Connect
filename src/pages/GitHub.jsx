@@ -7,7 +7,7 @@ function GitHub() {
 
   useEffect(() => {
     async function fetchUser() {
-      const response = await fetch(`http://localhost:5005/user/${id}`);
+      const response = await fetch(`${BASE_URL}/user/${id}`);
       if (response.status === 200) {
         const parsed = await response.json();
         const github = await fetch(

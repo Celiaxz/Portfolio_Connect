@@ -17,9 +17,7 @@ function Project() {
   //FETCH PROJECT
   const fetchProject = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5005/project/${projectId}`
-      );
+      const response = await axios.get(`${BASE_URL}/project/${projectId}`);
       if (response.status === 200) {
         setCurrentProject(response.data);
         setAllComments(response.data.comments);
@@ -40,7 +38,7 @@ function Project() {
         allComments.forEach(async (comment) => {
           try {
             const responseComments = await axios.delete(
-              `http://localhost:5005/project/${projectId}/comments/delete`
+              `${BASE_URL}/project/${projectId}/comments/delete`
             );
             if (responseComments.status === 204) {
               console.log("comments deleted");
@@ -52,7 +50,7 @@ function Project() {
       }
       //After deleting all comments, then delete the current project
       const response = await axios.delete(
-        `http://localhost:5005/project/delete/${projectId}`
+        `${BASE_URL}/project/delete/${projectId}`
       );
       if (response.status === 200) {
         navigate(`/user/${user._id}`);
@@ -67,7 +65,7 @@ function Project() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `http://localhost:5005/project/${projectId}/comment`,
+        `${BASE_URL}/project/${projectId}/comment`,
         {
           userId: user._id,
           projectId: projectId,
@@ -75,9 +73,7 @@ function Project() {
         }
       );
       if (response.status === 201) {
-        const response = await axios.get(
-          `http://localhost:5005/project/${projectId}`
-        );
+        const response = await axios.get(`${BASE_URL}/project/${projectId}`);
         //Update allcomment state to refresh the comment section
         setAllComments(response.data.comments);
         setCommentContent("");
@@ -87,9 +83,7 @@ function Project() {
     }
     if (response.status === 201) {
       try {
-        const response = await axios.get(
-          `http://localhost:5005/project/${projectId}`
-        );
+        const response = await axios.get(`${BASE_URL}/project/${projectId}`);
         setAllComments(response.data.comments);
         setCommentContent("");
       } catch (error) {
@@ -101,14 +95,12 @@ function Project() {
   const handleEditComment = async (commentId) => {
     try {
       const response = await axios.patch(
-        `http://localhost:5005/project/${projectId}/comment/${commentId}/update`,
+        `${BASE_URL}/project/${projectId}/comment/${commentId}/update`,
         { comment: editedComment }
       );
       if (response.status === 200) {
         //fetching all comments again and set the state to refresh comments section
-        const response = await axios.get(
-          `http://localhost:5005/project/${projectId}`
-        );
+        const response = await axios.get(`${BASE_URL}/project/${projectId}`);
         setAllComments(response.data.comments);
         setCommentToEdit(null);
         setEditComment(false);
@@ -121,12 +113,10 @@ function Project() {
   const handleDeleteComment = async (commentId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5005/project/${projectId}/comment/${commentId}/delete`
+        `${BASE_URL}/project/${projectId}/comment/${commentId}/delete`
       );
       if (response.status === 204) {
-        const response = await axios.get(
-          `http://localhost:5005/project/${projectId}`
-        );
+        const response = await axios.get(`${BASE_URL}/project/${projectId}`);
         setAllComments(response.data.comments);
       }
     } catch (error) {

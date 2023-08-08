@@ -5,20 +5,18 @@ import { useNavigate } from "react-router-dom";
 function Projects() {
   const [projects, setProjects] = useState([]);
   const navigate = useNavigate();
-  useEffect(() => {
-    async function fetchProjects() {
-      const response = await fetch(
-        "http://localhost:5005/project/userId/r7ujbbe6kiu"
-      );
-      if (response.status === 200) {
-        const parsed = await response.json();
-        console.log("parsed data :", parsed);
-        setProjects(parsed);
-      }
-    }
+  // useEffect(() => {
+  //   async function fetchProjects() {
+  //     const response = await fetch("${BASE_URL}/project/userId/r7ujbbe6kiu");
+  //     if (response.status === 200) {
+  //       const parsed = await response.json();
+  //       console.log("parsed data :", parsed);
+  //       setProjects(parsed);
+  //     }
+  //   }
 
-    fetchProjects();
-  }, []);
+  //   fetchProjects();
+  // }, []);
 
   const updateProjectHandler = (projectId) => {
     navigate(`/project/${projectId}`);
@@ -26,12 +24,9 @@ function Projects() {
 
   const deleteProjectHandler = async (projectId) => {
     try {
-      const response = await fetch(
-        `http://localhost:5005/project/delete/${projectId}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const response = await fetch(`${BASE_URL}/project/delete/${projectId}`, {
+        method: "DELETE",
+      });
 
       if (response.status === 200) {
         // Project was deleted successfully, remove it from the state
