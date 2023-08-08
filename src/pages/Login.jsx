@@ -32,7 +32,26 @@ function Login() {
         height: "100vh",
       }}
     >
-      {" "}
+      <form onSubmit={handleSubmit}>
+        <Stack spacing="lg">
+          <TextInput
+            required
+            label="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <TextInput
+            required
+            type="password"
+            label="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button type="submit" fullWidth>
+            Login
+          </Button>
+        </Stack>
+      </form>{" "}
     </Container>
   );
 }
