@@ -91,6 +91,30 @@ function Signup() {
         <Text align="center" style={{ marginTop: "1rem" }}>
           Already have an account? <Link to="/login">Click to login</Link>
         </Text>
+        <Text align="center" style={{ marginTop: "1rem", fontSize: "14px" }}>
+          By continuing, you agree to PortfolioConnect's{" "}
+          <Link
+            to="#"
+            style={{
+              color: "black",
+              fontWeight: "bold",
+              textDecoration: "none",
+            }}
+          >
+            Terms
+          </Link>{" "}
+          and{" "}
+          <Link
+            to="#"
+            style={{
+              color: "black",
+              fontWeight: "bold",
+              textDecoration: "none",
+            }}
+          >
+            Privacy Policy
+          </Link>
+        </Text>
       </Paper>
     </Container>
   );
