@@ -36,7 +36,6 @@ function Project() {
         try {
             const response = await axios.get(`http://localhost:5005/project/${projectId}`)
             if (response.status === 200) {
-                console.log(response.data)
                 setCurrentProject(response.data)
                 setAllComments(response.data.comments)
             }
@@ -93,7 +92,7 @@ function Project() {
             <Link to={repositoryLink}>Link to repo</Link>
             <Link to={projectFolder}>Download project</Link>
             <p>Creator: {userId.username}</p>
-            {userId._id === user._id && <>
+            {user && userId._id === user._id && <>
                 <button>Update Project</button>
                 <button>Delete Project</button>
             </>}
@@ -113,7 +112,7 @@ function Project() {
                                     <p>From {comment.userId.username}</p>
                                     <p>{comment.comment}</p>
                                     <p>{comment.date}</p>
-                                    {user && userId._id === user._id && <><button onClick={() => {
+                                    {comment.userId._id === user._id && <><button onClick={() => {
                                         setEditComment(true)
                                         setCommentToEdit(comment._id)
                                         setEditedComment(comment.comment)
