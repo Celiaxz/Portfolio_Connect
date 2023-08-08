@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 function SearchProjects() {
   // const [searchTerm, setSearchTerm] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [projects, setProjects] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function fetchAllProjects() {
@@ -50,6 +52,10 @@ function SearchProjects() {
     }
   };
 
+  const redirectToProject = (projectId) => {
+    navigate(`/projects/${projectId}`)
+  }
+
   return (
     <>
       <h1>Search Projects</h1>
@@ -57,10 +63,11 @@ function SearchProjects() {
       {/* <button onClick={handleSearch}>Search</button> */}
       {filteredProjects.map((project) => (
         <div className="projects-list" key={project._id}>
-          <p>Title: {project.title}</p>
+          <p>Title: <Link to={`/projects/${project._id}`}>{project.title}</Link></p>
           <p>Technologies: {project.technologies}</p>
           <p>Repository Link: {project.repositoryLink}</p>
           <p>Project Folder: {project.projectFolder}</p>
+          <button onClick={() => redirectToProject(project._id)}>See more</button>
         </div>
       ))}
     </>
