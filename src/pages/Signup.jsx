@@ -1,6 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import {
+  TextInput,
+  PasswordInput,
+  Paper,
+  Title,
+  Container,
+  Button,
+  Stack,
+  Text,
+} from "@mantine/core";
 
 function Signup() {
   const [username, setUsername] = useState("");
@@ -26,43 +36,63 @@ function Signup() {
   };
 
   return (
-    <>
-      <h1>Welcome to Signup</h1>
-      <form onSubmit={handleLogin}>
-        <label>
-          Username:
-          <input
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-        <label>
-          E-mail:
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-        <label>
-          GitHub Username:
-          <input
-            type="githubUsername"
-            value={githubUsername}
-            onChange={(event) => setGithubUsername(event.target.value)}
-          />
-        </label>
-        <button>Signup</button>
-      </form>
-    </>
+    <Container
+      size="lg"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100vh",
+      }}
+    >
+      {" "}
+      <h1 style={{ fontSize: "5rem", marginBottom: "7rem" }}>
+        Join our Portfolio Community
+      </h1>
+      <h4 style={{ fontSize: "2rem", marginBottom: "7rem" }}>
+        {" "}
+        Connect with like-minded individuals, showcase your portfolio, and grow
+        together.
+      </h4>
+      <Paper padding="lg" shadow="xs" style={{ width: "500px" }}>
+        <form onSubmit={handleLogin}>
+          <Stack spacing="lg">
+            <TextInput
+              required
+              label="Username"
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
+            />
+            <TextInput
+              required
+              type="email"
+              label="E-mail"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            <PasswordInput
+              required
+              label="Password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              hidePasswordByDefault
+            />
+            <TextInput
+              label="GitHub Username"
+              value={githubUsername}
+              onChange={(event) => setGithubUsername(event.target.value)}
+            />
+            <Button type="submit" fullWidth>
+              Signup
+            </Button>
+          </Stack>
+        </form>
+        <Text align="center" style={{ marginTop: "1rem" }}>
+          Already have an account? <Link to="/login">Click to login</Link>
+        </Text>
+      </Paper>
+    </Container>
   );
 }
 
