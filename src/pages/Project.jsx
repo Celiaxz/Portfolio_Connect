@@ -52,6 +52,27 @@ function Project() {
         }
     }
 
+    //Editing the comment
+    const handleEditComment = async (commentId) => {
+        try {
+            const response = await axios.put(`http://localhost:5005/project/${projectId}/comment/${commentId}/update`)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    //Deleting the comment
+    const handleDeleteComment = async (commentId) => {
+        try {
+            const response = await axios.delete(`http://localhost:5005/project/${projectId}/comment/${commentId}/delete`)
+            if (response.status === 204) {
+                const response = await axios.get(`http://localhost:5005/project/${projectId}`)
+                setAllComments(response.data.comments)
+            }
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
     useEffect(() => {
         fetchProject()
     }, [])
@@ -80,8 +101,8 @@ function Project() {
                                 <p>From {comment.userId}</p>
                                 <p>{comment.comment}</p>
                                 <p>{comment.date}</p>
-                                {comment.userId === user._id && <><button>Edit</button>
-                                    <button>Delete</button></>}
+                                {comment.userId === user._id && <><button onClick={() => handleEditComment(comment._id)}>Edit</button>
+                                    <button onClick={() => handleDeleteComment(comment._id)}>Delete</button></>}
                             </div>
                         </div>
                     )
