@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../contexts/auth.context";
+import { AuthContext } from "../contexts/Auth.context";
 
 function Project() {
     const [currentProject, setCurrentProject] = useState(null);
