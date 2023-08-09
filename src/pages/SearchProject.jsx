@@ -84,9 +84,12 @@ function SearchProjects() {
             <Card
               className="search-project-card"
               title={
-                <span className="search-project-card-title">
+                <Link
+                  to={`/projects/${project._id}`}
+                  className="search-project-card-title"
+                >
                   {project.title}
-                </span>
+                </Link>
               }
             >
               <p>Technologies: {project.technologies}</p>

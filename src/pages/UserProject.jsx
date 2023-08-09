@@ -67,7 +67,12 @@ function UserProject() {
                 <Card
                   className="project-card"
                   title={
-                    <span className="project-card-title">{project.title}</span>
+                    <Link
+                      to={`/projects/${project._id}`}
+                      className="project-card-title"
+                    >
+                      {project.title}
+                    </Link>
                   }
                 >
                   <p>{project.technologies}</p>
