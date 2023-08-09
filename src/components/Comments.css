@@ -1,0 +1,28 @@
+.one_comment{
+   color: black;
+   background-color: rgb(202, 210, 210);
+   min-height: 100px;
+   margin-bottom: 20px;
+}
+
+.comment_infos{
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin: 0;
+   padding: 0 5px;
+   background: rgb(148, 197, 197);
+}
+
+.comment_infos p{
+margin: 0;
+}
+
+.comment_author{
+   color: black;
+   font-weight: bold;
+}
+
+.comment_author:hover{
+   color: teal;
+}

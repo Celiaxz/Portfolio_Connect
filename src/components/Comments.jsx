@@ -1,10 +1,11 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import { useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/Auth.context";
 import { BASE_URL } from "../config/config.index";
+import "./Comments.css";
 
-function Comments({projectId,allComments, setAllComments}) {
+function Comments({ projectId, allComments, setAllComments }) {
    const { user, isLoggedIn } = useContext(AuthContext);
    const [commentContent, setCommentContent] = useState("");
    const [editComment, setEditComment] = useState(false);
@@ -16,7 +17,7 @@ function Comments({projectId,allComments, setAllComments}) {
    //Create new comment
    const handleNewComment = async (e) => {
       e.preventDefault();
-      if(!isLoggedIn){
+      if (!isLoggedIn) {
          navigate("/login")
       }
       try {
@@ -70,21 +71,26 @@ function Comments({projectId,allComments, setAllComments}) {
          console.error(error);
       }
    };
+
    return (
       <>
          <div className="comments_section">
             <h3>Comments: </h3>
-            {allComments &&
-               allComments.map((comment) => {
-                  return (
-                     <div key={comment._id}>
-                        {editComment && commentToEdit === comment._id ? (
+            {allComments && allComments.map((comment) => {
+               return (
+                  <div className="one_comment" key={comment._id}>
+                     {editComment && commentToEdit === comment._id ? (
+                        <div>
+                           <div className="comment_infos">
+                              <Link to={`/user/${comment.userId._id}`} className="comment_author">{comment.userId.username}</Link>
+                              <p className="comment_date">{comment.date}</p>
+                           </div>
                            <form>
                               <label>
                                  <textarea
                                     value={editedComment}
                                     onChange={(e) => setEditedComment(e.target.value)}
-                                    required/>
+                                    required />
                               </label>
                               <button onClick={(e) => {
                                  e.preventDefault()
@@ -93,44 +99,40 @@ function Comments({projectId,allComments, setAllComments}) {
                                  Save edit
                               </button>
                            </form>
-                        ) : (
-                           <div className="one_comment" style={{ border: "solid teal 2px" }}>
-                              <p>From {comment.userId.username}</p>
-                              <p>{comment.comment}</p>
-                              <p>{comment.date}</p>
-                              {user && comment.userId._id === user._id && (
-                                 <>
-                                    <button
-                                       onClick={() => {
-                                          setEditComment(true);
-                                          setCommentToEdit(comment._id);
-                                          setEditedComment(comment.comment);
-                                       }}
-                                    >
-                                       Edit
-                                    </button>
-                                    <button
-                                       onClick={() => handleDeleteComment(comment._id)}
-                                    >
-                                       Delete
-                                    </button>
-                                 </>
-                              )}
+                        </div>
+                     ) : (
+                        <div>
+                           <div className="comment_infos">
+                              <p>From <Link to={`/user/${comment.userId._id}`} className="comment_author">{comment.userId.username}</Link></p>
+                              <p className="comment_date">{comment.date}</p>
                            </div>
-                        )}
-                     </div>
-                  );
-               })}
+                           <p>{comment.comment}</p>
+                           {user && comment.userId._id === user._id && (
+                              <>
+                                 <button onClick={() => {
+                                    setEditComment(true);
+                                    setCommentToEdit(comment._id);
+                                    setEditedComment(comment.comment);
+                                 }}>
+                                    Edit
+                                 </button>
+                                 <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+                              </>
+                           )}
+                        </div>
+                     )}
+                  </div>
+               );
+            })}
          </div>
          <div className="new_comment">
             <p>Add new comment</p>
             <form onSubmit={handleNewComment}>
-               <label>
-                  Comment :
+               <label>Comment :
                   <textarea
                      value={commentContent}
                      onChange={(e) => setCommentContent(e.target.value)}
-                     required/>
+                     required />
                </label>
                <button type="submit">Post</button>
             </form>
