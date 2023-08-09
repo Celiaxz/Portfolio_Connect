@@ -1,0 +1,96 @@
+.project_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.project_h1{
+   text-align: center;
+}
+
+label{
+   font-size: 1.5rem;
+   font-weight: bold;
+   color:  rgb(0, 90, 90);
+}
+
+.submit_button {
+  display: block;
+  min-width: 60px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  background: rgb(148, 197, 197);
+  cursor: pointer;
+}
+
+.submit_button:hover {
+  background: rgb(66, 163, 163);
+}
+
+.project_form textarea {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+.form_inputs {
+  margin-bottom: 20px;
+  display: flex;
+  gap: 50px;
+  justify-content: space-between;
+}
+
+.no_tech_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 400px;
+}
+.technologies_inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.one_tech_input {
+  display: flex;
+  gap: 5px;
+}
+
+input, textarea{
+   font-size: 1rem;
+}
+input::placeholder,
+textarea::placeholder {
+  color: rgba(0, 128, 128, 0.346);
+}
+
+textarea{
+   height: 100px;
+}
+
+.technologies_inputs button {
+  background-color: rgb(150, 201, 201);
+  border: none;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.technologies_inputs button:hover {
+  background: rgb(66, 163, 163);
+}
+.add_tech_div {
+  margin-top: 5px;
+  display: flex;
+  gap: 5px;
+}
+.add_tech_div p {
+  font-size: 0.9rem;
+  color: grey;
+  margin: 0;
+}

@@ -4,6 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../contexts/Auth.context";
 import { BASE_URL } from "../config/config.index";
 import Comments from "../components/Comments";
+import "./Project.css"
 
 function Project() {
    const [currentProject, setCurrentProject] = useState(null);
@@ -76,25 +77,27 @@ function Project() {
       userId,
    } = currentProject
    return (
-      <>
-         <h2>Project : {title}</h2>
-         <p>{description}</p>
-         <ul>
-            {technologies.map((technology) => (
-               <li key={technology}>{technology}</li>
-            ))}
-         </ul>
-         <Link to={repositoryLink}>Link to repo</Link>
-         <Link to={projectFolder}>Download project</Link>
-         <p>Creator: {userId.username}</p>
-         {user && userId._id === user._id && (
-            <>
-               <button onClick={handleUpdateButton}>Update Project</button>
-               <button onClick={handleDeleteButton}>Delete Project</button>
-            </>
-         )}
+      <div className="project_page">
+         <div className="project_section">
+            <h2>Project : {title}</h2>
+            <p>{description}</p>
+            <ul>
+               {technologies.map((technology) => (
+                  <li key={technology}>{technology}</li>
+               ))}
+            </ul>
+            <Link to={repositoryLink}>Link to repo</Link>
+            <Link to={projectFolder}>Download project</Link>
+            <p>Creator: {userId.username}</p>
+            {user && userId._id === user._id && (
+               <>
+                  <button onClick={handleUpdateButton}>Update Project</button>
+                  <button onClick={handleDeleteButton}>Delete Project</button>
+               </>
+            )}
+         </div>
          <Comments projectId={projectId} setAllComments={setAllComments} allComments={allComments} />
-      </>
+      </div>
    );
 }
 
