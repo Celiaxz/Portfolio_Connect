@@ -45,6 +45,6 @@
 .projects-list {
   border: 10px solid rgb(136, 40, 79);
 }
- .hidden {
+.hidden {
   display: none;
- }
+}
