@@ -6,7 +6,7 @@ import { BASE_URL } from "../config/config.index";
 
 function UserProject() {
   const { id } = useParams();
-  const { isLoading } = useContext(AuthContext);
+  const { isLoading, user } = useContext(AuthContext);
   const [wantedUser, setWantedUser] = useState(null);
   const [projects, setProjects] = useState([]);
   const navigate = useNavigate();
@@ -50,42 +50,42 @@ function UserProject() {
     navigate(`/projects/${projectId}`);
   };
 
-  return (
-    <>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <h1>Welcome to {wantedUser ? wantedUser.username : null}'s page</h1>
-          <h2>Projects</h2>
-          {projects.map((project) => (
-            <div key={project._id} className="projects-list">
-              <p>
-                <Link to={`/projects/${project._id}`}>{project.title}</Link>
-              </p>
-              <p>{project.technologies}</p>
-              <p>{project.repositoryLink}</p>
-              <p>{project.projectFolder}</p>
-              <button onClick={() => redirectToProject(project._id)}>
-                See more
-              </button>
-              <button
-                type="submit"
-                onClick={() => updateProjectHandler(project._id)}
-              >
-                Edit
-              </button>
-              <button
-                type="submit"
-                onClick={() => deleteProjectHandler(project._id)}
-              >
-                delete
-              </button>
-            </div>
-          ))}
-        </>
-      )}
-    </>
-  );
+  if(user && wantedUser){
+    return (
+          <>
+            <h1>Welcome to {wantedUser ? wantedUser.username : null}'s page</h1>
+            <h2>Projects</h2>
+            {projects.map((project) => (
+              <div key={project._id} className="projects-list">
+                <p>
+                  <Link to={`/projects/${project._id}`}>{project.title}</Link>
+                </p>
+                <p>{project.technologies}</p>
+                <p>{project.repositoryLink}</p>
+                <p>{project.projectFolder}</p>
+                <button onClick={() => redirectToProject(project._id)}>
+                  See more
+                </button>
+                <button
+                  className={id !== user._id ? "hidden" : null}
+                  type="submit"
+                  onClick={() => updateProjectHandler(project._id)}
+                >
+                  Edit
+                </button>
+                <button
+                  className={id !== user._id ? "hidden" : null}
+                  type="submit"
+                  onClick={() => deleteProjectHandler(project._id)}
+                >
+                  delete
+                </button>
+              </div>
+            ))}
+          </>
+    );
+  } else {
+    return <h2>...Loading</h2>
+  }
 }
 export default UserProject;

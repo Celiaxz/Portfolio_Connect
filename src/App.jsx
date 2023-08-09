@@ -29,7 +29,7 @@ function App() {
         <Route path="/search-projects" element={<SearchProject />} />
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="/user/update" element={<UpdateUser />} />
-        <Route path="/my-projects/:id" element={<UserProject />} />
+        <Route path="/user/:id/projects" element={<UserProject />} />
         <Route path="/github/:id" element={<GitHub />} />
         <Route path="/otherUsers/:id" element={<OtherUsers />} />
       </Routes>
