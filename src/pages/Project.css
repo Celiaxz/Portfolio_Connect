@@ -12,6 +12,11 @@
    border-radius: 5px;
    font-size: 0.9rem;
    background: rgb(148, 197, 197);
+   cursor: pointer;
+}
+
+.project_page button:hover{
+   background: rgb(66, 163, 163);
 }
 
 .project_section{
