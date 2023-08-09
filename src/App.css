@@ -30,6 +30,12 @@
 }
 
 /* UserProject.css */
+.user-Projects-Title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+  padding-bottom: 5%;
+}
 .user-project-container {
   padding: 20px;
 }

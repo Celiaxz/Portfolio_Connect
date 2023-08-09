@@ -58,7 +58,7 @@ function UserProject() {
       ) : (
         <div>
           <h1>Welcome to {wantedUser ? wantedUser.username : null}'s page</h1>
-          <h2>Projects</h2>
+          <h2 className="user-Projects-Title">My Projects</h2>
           <Row gutter={16}>
             {projects.map((project) => (
               <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
