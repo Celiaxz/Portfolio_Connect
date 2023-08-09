@@ -10,7 +10,7 @@ function OtherUsers() {
   const { id } = useParams();
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20; // Number of users to display per page
+  const itemsPerPage = 10;
   const navigate = useNavigate();
 
   useEffect(() => {

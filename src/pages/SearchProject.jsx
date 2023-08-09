@@ -8,7 +8,7 @@ function SearchProjects() {
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [projects, setProjects] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const projectsPerPage = 20; // Number of projects to display per page
+  const projectsPerPage = 20;
   const navigate = useNavigate();
 
   useEffect(() => {

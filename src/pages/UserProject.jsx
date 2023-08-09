@@ -12,7 +12,7 @@ function UserProject() {
   const [wantedUser, setWantedUser] = useState(null);
   const [projects, setProjects] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const projectsPerPage = 30; // Number of projects to display per page
+  const projectsPerPage = 30;
   const navigate = useNavigate();
   useEffect(() => {
     async function fetchUser() {
