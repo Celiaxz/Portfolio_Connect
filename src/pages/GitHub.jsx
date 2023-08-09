@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { BASE_URL } from "../config/config.index";
 import { Card, Button, Col, Row } from "antd";
+import Pagination from "../components/Pagination";
 function GitHub() {
   const { id } = useParams();
   const [projects, setProjects] = useState(undefined);
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 10; // Number of projects to display per page
 
   useEffect(() => {
     async function fetchUser() {
@@ -34,6 +35,19 @@ function GitHub() {
 
   const avatar = projects?.[0].owner.avatar_url;
   const isLoading = projects !== undefined;
+
+  // Calculate totalPages based on the number of projects
+  const totalPages = Math.ceil((projects?.length || 0) / itemsPerPage);
+
+  // Define click handlers for pagination
+  const handlePrevClick = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextClick = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
   return (
     <>
       {isLoading ? (
@@ -63,20 +77,13 @@ function GitHub() {
               </Col>
             ))}
           </Row>
-          <div className="pagination-controls">
-            <button
-              onClick={() => setCurrentPage(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              <i className="fas fa-chevron-left"></i> Previous
-            </button>
-            <button
-              onClick={() => setCurrentPage(currentPage + 1)}
-              disabled={endIndex >= (projects?.length || 0)}
-            >
-              Next <i className="fas fa-chevron-right"></i>
-            </button>
-          </div>
+
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPrevClick={handlePrevClick}
+            onNextClick={handleNextClick}
+          />
         </div>
       ) : null}
     </>
