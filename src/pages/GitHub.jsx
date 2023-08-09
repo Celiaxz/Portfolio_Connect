@@ -6,6 +6,8 @@ function GitHub() {
   const { id } = useParams();
   const [projects, setProjects] = useState(undefined);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4;
 
   useEffect(() => {
     async function fetchUser() {
@@ -25,17 +27,21 @@ function GitHub() {
     fetchUser();
   }, [id]);
 
+  // Calculate the index range for projects to display on the current page
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const projectsToDisplay = projects?.slice(startIndex, endIndex) || [];
+
   const avatar = projects?.[0].owner.avatar_url;
   const isLoading = projects !== undefined;
   return (
     <>
       {isLoading ? (
-        <div>
+        <div className="other-Users-container">
           {/* <h2 className="user-Projects-Title">My Projects</h2> */}
+          <img src={avatar} alt="" />
           <Row gutter={16}>
-            <img src={avatar} alt="" />
-
-            {projects.map((project) => (
+            {projectsToDisplay.map((project) => (
               <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
                 <Card
                   className="other-Users-card"
@@ -57,6 +63,20 @@ function GitHub() {
               </Col>
             ))}
           </Row>
+          <div className="pagination-controls">
+            <button
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              <i className="fas fa-chevron-left"></i> Previous
+            </button>
+            <button
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={endIndex >= (projects?.length || 0)}
+            >
+              Next <i className="fas fa-chevron-right"></i>
+            </button>
+          </div>
         </div>
       ) : null}
     </>

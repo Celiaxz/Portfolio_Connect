@@ -8,7 +8,10 @@ import { Card, Row, Col } from "antd";
 function OtherUsers() {
   const { id } = useParams();
   const [users, setUsers] = useState([]);
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const itemsPerPage = 50; // Number of users to display per page
   const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchAllUsers() {
       const response = await fetch(`${BASE_URL}/user/users/all`);
@@ -19,6 +22,10 @@ function OtherUsers() {
     }
     fetchAllUsers();
   }, []);
+  // Calculate the index range for users to display on the current page
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const usersToDisplay = users.slice(startIndex, endIndex);
   const shouldLoad = users.length > 0;
   return (
     <div className="other-Users-container">
