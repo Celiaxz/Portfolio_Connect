@@ -82,7 +82,7 @@ function Comments({ projectId, allComments, setAllComments }) {
                      {editComment && commentToEdit === comment._id ? (
                         <div>
                            <div className="comment_infos">
-                              <Link to={`/user/${comment.userId._id}`} className="comment_author">{comment.userId.username}</Link>
+                           <p>From <Link to={`/user/${comment.userId._id}`} className="comment_author">{comment.userId.username}</Link></p>
                               <p className="comment_date">{comment.date}</p>
                            </div>
                            <form>
@@ -124,18 +124,19 @@ function Comments({ projectId, allComments, setAllComments }) {
                   </div>
                );
             })}
-         </div>
          <div className="new_comment">
             <p>Add new comment</p>
             <form onSubmit={handleNewComment}>
-               <label>Comment :
+               <label>
                   <textarea
+                  className="comment_textarea"
                      value={commentContent}
                      onChange={(e) => setCommentContent(e.target.value)}
                      required />
                </label>
                <button type="submit">Post</button>
             </form>
+         </div>
          </div>
       </>
    )
