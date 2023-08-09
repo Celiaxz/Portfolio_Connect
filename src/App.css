@@ -71,6 +71,41 @@
   background-color: #006a4e;
   border-color: #006a4e;
 }
+/* SearchProjects.css */
+.search-projects-container {
+  padding: 20px;
+}
+
+.search-project-card {
+  margin-bottom: 20px;
+  background-color: #87a96b;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-project-card-title {
+  font-weight: bold;
+  background-color: #006a4e;
+  color: white;
+  padding: 5px 10px;
+}
+
+.search-project-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .search-project-card-actions button {
+  border-color: #006a4e;
+  font-weight: 500;
+} */
+
+.search-project-card-actions button:hover {
+  background-color: #006a4e;
+  border-color: #006a4e;
+}
 
 .hidden {
   display: none;

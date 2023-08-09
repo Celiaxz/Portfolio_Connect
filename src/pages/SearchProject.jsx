@@ -93,10 +93,7 @@ function SearchProjects() {
               <p>Repository Link: {project.repositoryLink}</p>
               <p>Project Folder: {project.projectFolder}</p>
               <div className="search-project-card-actions">
-                <Button
-                  onClick={() => redirectToProject(project._id)}
-                  type="primary"
-                >
+                <Button onClick={() => redirectToProject(project._id)}>
                   See more
                 </Button>
               </div>
