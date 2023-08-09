@@ -37,7 +37,7 @@ function Navbar() {
               Profile
             </NavLink>
             <NavLink to={`/github/${user._id}`} style={navLinkStyle}>
-              Github Projects
+              My Github Projects
             </NavLink>
             <NavLink to={`/otherUsers/${user._id}`} style={navLinkStyle}>
               Other Users

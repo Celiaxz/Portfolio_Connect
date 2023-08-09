@@ -4,25 +4,27 @@ import { BASE_URL } from "../config/config.index";
 function GitHub() {
   const { id } = useParams();
   const [projects, setProjects] = useState(undefined);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
     async function fetchUser() {
       const response = await fetch(`${BASE_URL}/user/${id}`);
-      console.log(response)
       if (response.status === 200) {
         const parsed = await response.json();
         const github = await fetch(
           `https://api.github.com/users/${parsed.githubUsername}/repos`
         );
+        if(github.status === 403) setErrorMessage("GitHub request limit reached")
+        if(github.status === 404) setErrorMessage("GitHub Profile not found")
         const parsedd = await github.json();
         setProjects(parsedd);
       }
     }
     fetchUser();
-  }, []);
+  }, [id]);
 
   if(projects){
-    if(projects.message !== 'Not Found'){
+    if(!projects.message){
       const avatar = projects?.[0].owner.avatar_url;
       return (
         <>
@@ -41,7 +43,7 @@ function GitHub() {
         </>
       );
     } else {
-      return <h2>GitHub Profile not found</h2>
+      return <h2>{errorMessage}</h2>
     }
   } else {
     return <h2>...Loading</h2>
