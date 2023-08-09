@@ -4,6 +4,7 @@ import { AuthContext } from "../contexts/Auth.context";
 import { useParams, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config/config.index";
+import { Card, Row, Col } from "antd";
 function OtherUsers() {
   const { id } = useParams();
   const [users, setUsers] = useState([]);
@@ -20,20 +21,30 @@ function OtherUsers() {
   }, []);
   const shouldLoad = users.length > 0;
   return (
-    <>
+    <div className="other-Users-container">
       {shouldLoad ? (
-        <div>
+        <Row gutter={16}>
           {users.map((user) => (
-            <div key={user._id} className="projects-list">
-              <img src={user.image} alt="" />
-              <p>{user.githubUsername}</p>
-              <p>{user.aboutMe ? user.aboutMe : "My Bio"}</p>
-              <NavLink to={`/github/${user._id}`}>Github Projects</NavLink>
-            </div>
+            <Col xs={24} sm={12} md={8} lg={6} xl={6} key={user._id}>
+              <Card
+                className="other-Users-card"
+                title={
+                  <span className="other-Users-card-title">
+                    {user.githubUsername}
+                  </span>
+                }
+              >
+                <img src={user.image} alt="" />
+                <p>{user.aboutMe ? user.aboutMe : "My Bio"}</p>
+                <NavLink className="others-nav" to={`/github/${user._id}`}>
+                  Github Projects
+                </NavLink>
+              </Card>
+            </Col>
           ))}
-        </div>
+        </Row>
       ) : null}
-    </>
+    </div>
   );
 }
 

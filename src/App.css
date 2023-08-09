@@ -19,7 +19,6 @@
   text-decoration: none;
   color: #0066b2;
   text-decoration: none;
-  color: #0066b2;
   font-weight: 500;
   font-size: 20px;
   transition: color 0.3s ease;
@@ -45,7 +44,8 @@
 }
 
 .project-card,
-.search-project-card {
+.search-project-card,
+.other-Users-card {
   margin-bottom: 20px;
   background-color: #87a96b;
   border: 1px solid #ccc;
@@ -63,10 +63,10 @@
 }
 .project-card-title,
 .search-project-card-title {
-  font-weight: bold;
-  background-color: #006a4e;
+  font-weight: 800;
+  /* background-color: #006a4e; */
   color: white;
-  padding: 5px 10px;
+  padding-left: 40%;
 }
 .project-card-actions,
 .search-project-card-actions button {
@@ -115,7 +115,18 @@
   background-color: #006a4e;
   border-color: #006a4e;
 }
-
+.other-Users-container {
+  padding-top: 10rem;
+}
+.other-Users-card-title {
+  font-weight: 800;
+  padding-left: 40%;
+  font-weight: 800;
+}
+.others-nav {
+  background-color: #006a4e;
+  color: white;
+}
 .hidden {
   display: none;
 }

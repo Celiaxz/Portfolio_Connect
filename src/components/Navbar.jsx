@@ -24,7 +24,7 @@ function Navbar() {
                 Github Projects
               </NavLink>
               <NavLink to={`/otherUsers/${user._id}`} className="nav-link">
-                Other Users
+                Github Users
               </NavLink>
               <NavLink to="/search-projects" className="nav-link">
                 All projects

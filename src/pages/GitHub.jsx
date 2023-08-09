@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { BASE_URL } from "../config/config.index";
+import { Card, Button, Col, Row } from "antd";
 function GitHub() {
   const { id } = useParams();
   const [projects, setProjects] = useState(undefined);
