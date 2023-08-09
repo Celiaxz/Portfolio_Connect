@@ -94,3 +94,11 @@ textarea{
   color: grey;
   margin: 0;
 }
+
+
+@media (max-width: 768px) {
+  .form_inputs{
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
