@@ -24,8 +24,6 @@ function UserPage() {
       <>
           <div className="profile-container">
             <h1>Welcome to {wantedUser.username}'s page</h1>
-  
-            <Link to={`/my-projects/${id}`}>Projects</Link>
             <img style={{maxHeight: '200px', maxWidth: '200px', borderRadius: '50%'}} src={wantedUser.image} alt="profile image" />
             <ul style={{listStyle: 'none'}}>
               Skills:
