@@ -4,12 +4,15 @@ import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config/config.index";
 import { Card, Button, Col, Row } from "antd";
+import Pagination from "../components/Pagination";
 
 function UserProject() {
   const { id } = useParams();
   const { isLoading, user } = useContext(AuthContext);
   const [wantedUser, setWantedUser] = useState(null);
   const [projects, setProjects] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 30; // Number of projects to display per page
   const navigate = useNavigate();
   useEffect(() => {
     async function fetchUser() {
@@ -50,6 +53,19 @@ function UserProject() {
   const redirectToProject = (projectId) => {
     navigate(`/projects/${projectId}`);
   };
+  //Calculate the index range for users to display on the current page
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const startIndex = (currentPage - 1) * projectsPerPage;
+  const endIndex = startIndex + projectsPerPage;
+  const projectsToDisplay = projects.slice(startIndex, endIndex);
+
+  const handlePrevClick = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextClick = () => {
+    setCurrentPage(currentPage + 1);
+  };
 
   return (
     <div className="user-project-container">
@@ -62,7 +78,7 @@ function UserProject() {
           </h1>
           <h2 className="user-Projects-Title">My Projects</h2>
           <Row gutter={16}>
-            {projects.map((project) => (
+            {projectsToDisplay.map((project) => (
               <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
                 <Card
                   className="project-card"
@@ -93,6 +109,12 @@ function UserProject() {
               </Col>
             ))}
           </Row>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPrevClick={handlePrevClick}
+            onNextClick={handleNextClick}
+          />
         </div>
       )}
     </div>
