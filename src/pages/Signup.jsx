@@ -87,15 +87,26 @@ function Signup() {
           </Stack>
         </form>
         <Text align="center" style={{ marginTop: "1rem" }}>
-          Already have an account? <Link to="/login">Click to login</Link>
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            style={{
+              color: "#002147",
+              fontWeight: "bold",
+              textDecoration: "none",
+            }}
+          >
+            {" "}
+            login here
+          </Link>
         </Text>
         <Text align="center" style={{ marginTop: "1rem", fontSize: "14px" }}>
           By continuing, you agree to PortfolioConnect's{" "}
           <Link
             to="#"
             style={{
-              color: "black",
-              fontWeight: "bold",
+              color: "#007bff",
+
               textDecoration: "none",
             }}
           >
@@ -105,8 +116,8 @@ function Signup() {
           <Link
             to="#"
             style={{
-              color: "black",
-              fontWeight: "bold",
+              color: "#007bff",
+
               textDecoration: "none",
             }}
           >
