@@ -39,7 +39,7 @@ function UserPage() {
               className={id !== user._id ? "hidden" : null}
               onClick={() => navigate(`/user/update`)}
             >
-              'Update Profile
+              Update Profile
             </button>
   
             <Link to={`/user/${id}/projects`}>Projects</Link>
