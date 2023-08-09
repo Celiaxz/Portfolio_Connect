@@ -104,7 +104,7 @@ function Comments({ projectId, allComments, setAllComments }) {
                      ) : (
                         <div>
                            <div className="comment_infos">
-                              <p>From <Link to={`/user/${comment.userId._id}`} className="comment_author">{comment.userId.username}</Link></p>
+                              <p>From <Link to={`/user/${comment.userId._id}`} className="author">{comment.userId.username}</Link></p>
                               <p className="comment_date">{comment.date}</p>
                            </div>
                            <p className="comment">{comment.comment}</p>
