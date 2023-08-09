@@ -3,6 +3,7 @@ import { AuthContext } from "../contexts/Auth.context";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config/config.index";
+import { Card, Button, Col, Row } from "antd";
 
 function UserProject() {
   const { id } = useParams();
@@ -50,42 +51,44 @@ function UserProject() {
     navigate(`/projects/${projectId}`);
   };
 
-  if(user && wantedUser){
-    return (
-          <>
-            <h1>Welcome to {wantedUser ? wantedUser.username : null}'s page</h1>
-            <h2>Projects</h2>
+  return (
+    <div className="user-project-container">
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+          <h1>Welcome to {wantedUser ? wantedUser.username : null}'s page</h1>
+          <h2>Projects</h2>
+          <Row gutter={16}>
             {projects.map((project) => (
-              <div key={project._id} className="projects-list">
-                <p>
-                  <Link to={`/projects/${project._id}`}>{project.title}</Link>
-                </p>
-                <p>{project.technologies}</p>
-                <p>{project.repositoryLink}</p>
-                <p>{project.projectFolder}</p>
-                <button onClick={() => redirectToProject(project._id)}>
-                  See more
-                </button>
-                <button
-                  className={id !== user._id ? "hidden" : null}
-                  type="submit"
-                  onClick={() => updateProjectHandler(project._id)}
+              <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
+                <Card
+                  className="project-card"
+                  title={
+                    <span className="project-card-title">{project.title}</span>
+                  }
                 >
-                  Edit
-                </button>
-                <button
-                  className={id !== user._id ? "hidden" : null}
-                  type="submit"
-                  onClick={() => deleteProjectHandler(project._id)}
-                >
-                  delete
-                </button>
-              </div>
+                  <p>{project.technologies}</p>
+                  <p>{project.repositoryLink}</p>
+                  <p>{project.projectFolder}</p>
+                  <div className="project-card-actions">
+                    <Button onClick={() => redirectToProject(project._id)}>
+                      See more
+                    </Button>
+                    <Button onClick={() => updateProjectHandler(project._id)}>
+                      Edit
+                    </Button>
+                    <Button onClick={() => deleteProjectHandler(project._id)}>
+                      Delete
+                    </Button>
+                  </div>
+                </Card>
+              </Col>
             ))}
-          </>
-    );
-  } else {
-    return <h2>...Loading</h2>
-  }
+          </Row>
+        </div>
+      )}
+    </div>
+  );
 }
 export default UserProject;

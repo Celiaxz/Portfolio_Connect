@@ -26,12 +26,43 @@
 }
 
 .nav-link:hover {
-  color: rgb(12, 33, 66);
+  color: #006a4e;
 }
 
-.projects-list {
-  border: 10px solid rgb(136, 40, 79);
+/* UserProject.css */
+.user-project-container {
+  padding: 20px;
 }
+
+.project-card {
+  margin-bottom: 20px;
+  background-color: #87a96b;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+.project-card-title {
+  font-weight: bold;
+  background-color: #006a4e;
+  color: white;
+  padding: 5px 10px;
+}
+.project-card-actions button {
+  border-color: #006a4e;
+  font-weight: 500;
+}
+
+.project-card-actions button:hover {
+  background-color: #006a4e;
+  border-color: #006a4e;
+}
+
 .hidden {
   display: none;
 }
