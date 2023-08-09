@@ -89,15 +89,17 @@ function Project() {
          </div>
             <div className="project_section">
                <ul className="tech_list">
-                  {technologies.map((technology) => (
-                     <li key={technology}>{technology}</li>
-                  ))}
+                  {technologies.map((technology) => 
+                        {return technology.length > 0 &&
+                           <li key={technology}>{technology}</li>
+                        }
+                  )}
                </ul>
                <div className="project_second_part">
                <p className="description">{description}</p>
                <Link className="project_links" to={repositoryLink}>Link to repo</Link>
                <Link className="project_links" to={projectFolder}>Download project</Link>
-               <p className="creator">by <Link className="author">{userId.username}</Link></p>
+               <p className="creator">by <Link className="author" to={`/user/${userId._id}`}>{userId.username}</Link></p>
                </div>
             </div>
          <Comments projectId={projectId} setAllComments={setAllComments} allComments={allComments} />
