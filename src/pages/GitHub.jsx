@@ -8,7 +8,7 @@ function GitHub() {
   const [projects, setProjects] = useState(undefined);
   const [errorMessage, setErrorMessage] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // Number of projects to display per page
+  const itemsPerPage = 30;
 
   useEffect(() => {
     async function fetchUser() {
