@@ -30,7 +30,8 @@
 }
 
 /* UserProject.css */
-.welcome-User {
+.welcome-User,
+.search-title {
   font-size: 3rem;
 }
 .user-Projects-Title {
@@ -82,20 +83,31 @@
 .search-input-container {
   text-align: center;
   margin-top: 20px;
+  position: relative;
 }
 
 .search-input {
-  width: 300px;
-  padding: 10px;
+  width: 600px;
+  padding: 15px;
   border: 2px solid #006a4e;
   border-radius: 20px;
   font-size: 16px;
   outline: none;
   transition: border-color 0.3s ease-in-out;
   align-items: center;
+  margin-bottom: 7%;
 }
-.search-input:focus {
-  border-color: #39ff14; /* Change the border color on focus */
+.search-input:focus::placeholder {
+  visibility: hidden;
+}
+.search-input::placeholder {
+  visibility: visible;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: rgb(14, 14, 14);
 }
 .search-project-card-actions button:hover {
   background-color: #006a4e;

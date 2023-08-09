@@ -54,38 +54,18 @@ function SearchProjects() {
   const redirectToProject = (projectId) => {
     navigate(`/projects/${projectId}`);
   };
-
-  // return (
-  //   <>
-  //     <h1>Search Projects</h1>
-  //     <input type="text" onChange={handleSearch} />
-  //     {filteredProjects.map((project) => (
-  //       <div className="projects-list" key={project._id}>
-  //         <p>
-  //           Title: <Link to={`/projects/${project._id}`}>{project.title}</Link>
-  //         </p>
-  //         <p>Technologies: {project.technologies}</p>
-  //         <p>Repository Link: {project.repositoryLink}</p>
-  //         <p>Project Folder: {project.projectFolder}</p>
-  //         <button onClick={() => redirectToProject(project._id)}>
-  //           See more
-  //         </button>
-  //       </div>
-  //     ))}
-  //   </>
-  // );
   return (
     <div className="search-projects-container">
-      <h1>Welcome to Search Projects</h1>
       <div className="search-input-container">
+        <h1 className="search-title">Search Projects :</h1>
         <input
           type="text"
           onChange={handleSearch}
           className="search-input"
-          placeholder="Search by title or technology"
+          placeholder="by title or technology..."
         />
       </div>
-      <h2>Projects</h2>
+
       <Row gutter={16}>
         {filteredProjects.map((project) => (
           <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
