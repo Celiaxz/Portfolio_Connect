@@ -77,6 +77,7 @@ function SearchProjects() {
   return (
     <div className="search-projects-container">
       <h1>Welcome to Search Projects</h1>
+      <input className="search-box" type="text" onChange={handleSearch} />
       <h2>Projects</h2>
       <Row gutter={16}>
         {projects.map((project) => (
