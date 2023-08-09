@@ -75,19 +75,20 @@ function Comments({ projectId, allComments, setAllComments }) {
    return (
       <>
          <div className="comments_section">
-            <h3>Comments: </h3>
+            <h3>Comments :</h3>
             {allComments && allComments.map((comment) => {
                return (
                   <div className="one_comment" key={comment._id}>
                      {editComment && commentToEdit === comment._id ? (
                         <div>
                            <div className="comment_infos">
-                           <p>From <Link to={`/user/${comment.userId._id}`} className="comment_author">{comment.userId.username}</Link></p>
+                              <p>From <Link to={`/user/${comment.userId._id}`} className="comment_author">{comment.userId.username}</Link></p>
                               <p className="comment_date">{comment.date}</p>
                            </div>
                            <form>
                               <label>
                                  <textarea
+                                    className="comment_textarea"
                                     value={editedComment}
                                     onChange={(e) => setEditedComment(e.target.value)}
                                     required />
@@ -96,7 +97,7 @@ function Comments({ projectId, allComments, setAllComments }) {
                                  e.preventDefault()
                                  handleEditComment(comment._id)
                               }}>
-                                 Save edit
+                                 Save
                               </button>
                            </form>
                         </div>
@@ -106,9 +107,9 @@ function Comments({ projectId, allComments, setAllComments }) {
                               <p>From <Link to={`/user/${comment.userId._id}`} className="comment_author">{comment.userId.username}</Link></p>
                               <p className="comment_date">{comment.date}</p>
                            </div>
-                           <p>{comment.comment}</p>
+                           <p className="comment">{comment.comment}</p>
                            {user && comment.userId._id === user._id && (
-                              <>
+                              <div className="comments_buttons">
                                  <button onClick={() => {
                                     setEditComment(true);
                                     setCommentToEdit(comment._id);
@@ -117,26 +118,24 @@ function Comments({ projectId, allComments, setAllComments }) {
                                     Edit
                                  </button>
                                  <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
-                              </>
+                              </div>
                            )}
                         </div>
                      )}
                   </div>
                );
             })}
-         <div className="new_comment">
-            <p>Add new comment</p>
-            <form onSubmit={handleNewComment}>
-               <label>
-                  <textarea
-                  className="comment_textarea"
-                     value={commentContent}
-                     onChange={(e) => setCommentContent(e.target.value)}
-                     required />
-               </label>
-               <button type="submit">Post</button>
-            </form>
-         </div>
+               <h3>Add a comment :</h3>
+               <form className="new_comment" onSubmit={handleNewComment}>
+                  <label>
+                     <textarea
+                        className="comment_textarea"
+                        value={commentContent}
+                        onChange={(e) => setCommentContent(e.target.value)}
+                        required />
+                  </label>
+                  <button type="submit">Post</button>
+               </form>
          </div>
       </>
    )
