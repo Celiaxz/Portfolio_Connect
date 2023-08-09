@@ -77,11 +77,14 @@ function SearchProjects() {
   return (
     <div className="search-projects-container">
       <h1>Welcome to Search Projects</h1>
-      <input
-        type="text"
-        onChange={handleSearch}
-        placeholder="Search by title or technology"
-      />
+      <div className="search-input-container">
+        <input
+          type="text"
+          onChange={handleSearch}
+          className="search-input"
+          placeholder="Search by title or technology"
+        />
+      </div>
       <h2>Projects</h2>
       <Row gutter={16}>
         {filteredProjects.map((project) => (
