@@ -29,16 +29,16 @@
   color: #006a4e;
 }
 
-/* UserProject.css */
-.welcome-User,
-.search-title {
+/* UserProject */
+.welcome-User {
   font-size: 3rem;
 }
-.user-Projects-Title {
+.user-Projects-Title,
+.search-title {
   text-align: center;
   font-size: 3rem;
   font-weight: 800;
-  padding-bottom: 5%;
+  padding-bottom: 3%;
 }
 .user-project-container {
   padding: 20px;
@@ -50,8 +50,10 @@
   background-color: #87a96b;
   border: 1px solid #ccc;
   border-radius: 10px;
-  color: white;
+  color: #100c08;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 800;
+  font-size: 1rem;
 }
 
 .project-card-actions,
@@ -76,7 +78,7 @@
   background-color: #006a4e;
   border-color: #006a4e;
 }
-/* SearchProjects.css */
+/* SearchProjects */
 .search-projects-container {
   padding: 20px;
 }
