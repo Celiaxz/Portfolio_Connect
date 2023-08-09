@@ -46,7 +46,7 @@ function Navbar() {
           </>
         ) : (
           <>
-            <NavLink exact to="/" style={navLinkStyle}>
+            <NavLink exact="true" to="/" style={navLinkStyle}>
               Home
             </NavLink>
             <NavLink to="/signup" style={navLinkStyle}>
