@@ -61,10 +61,12 @@ const AuthContextWrapper = ({ children }) => {
         console.error(error);
         setIsLoggedIn(false);
         setUser(null);
+        navigate('/')
       }
     } else {
       setIsLoggedIn(false);
       setUser(null);
+      navigate('/')
     }
   };
 
