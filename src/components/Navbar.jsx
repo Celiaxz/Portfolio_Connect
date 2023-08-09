@@ -20,11 +20,11 @@ function Navbar() {
               <NavLink to={`/user/${user._id}`} className="nav-link">
                 Profile{" "}
               </NavLink>
-              <NavLink to={`/github/${user._id}`} className="nav-link">
-                Github Projects
-              </NavLink>
+              {/* <NavLink to={`/github/${user._id}`} className="nav-link">
+                my Github Projects
+              </NavLink> */}
               <NavLink to={`/otherUsers/${user._id}`} className="nav-link">
-                Github Users
+                Others Github
               </NavLink>
               <NavLink to="/search-projects" className="nav-link">
                 All projects

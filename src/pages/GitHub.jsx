@@ -15,8 +15,9 @@ function GitHub() {
         const github = await fetch(
           `https://api.github.com/users/${parsed.githubUsername}/repos`
         );
-        if(github.status === 403) setErrorMessage("GitHub request limit reached")
-        if(github.status === 404) setErrorMessage("GitHub Profile not found")
+        if (github.status === 403)
+          setErrorMessage("GitHub request limit reached");
+        if (github.status === 404) setErrorMessage("GitHub Profile not found");
         const parsedd = await github.json();
         setProjects(parsedd);
       }
@@ -24,31 +25,42 @@ function GitHub() {
     fetchUser();
   }, [id]);
 
-  if(projects){
-    if(!projects.message){
-      const avatar = projects?.[0].owner.avatar_url;
-      return (
-        <>
-            <div>
-              <img src={avatar} alt="" />
-              {projects.map((project) => (
-                <div key={project.id} className="projects-list">
-                  <p>{project.name}</p>
+  const avatar = projects?.[0].owner.avatar_url;
+  const isLoading = projects !== undefined;
+  return (
+    <>
+      {isLoading ? (
+        <div>
+          {/* <h2 className="user-Projects-Title">My Projects</h2> */}
+          <Row gutter={16}>
+            <img src={avatar} alt="" />
+
+            {projects.map((project) => (
+              <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
+                <Card
+                  className="other-Users-card"
+                  title={
+                    <span className="other-Users-card-title">
+                      {project.name}
+                    </span>
+                  }
+                >
                   <p>{project.language}</p>
-                  <Link key={project.html_url} to={project.html_url}>
+                  <Link
+                    className="others-nav"
+                    key={project.html_url}
+                    to={project.html_url}
+                  >
                     GitHub Project
                   </Link>
-                </div>
-              ))}
-            </div>
-        </>
-      );
-    } else {
-      return <h2>{errorMessage}</h2>
-    }
-  } else {
-    return <h2>...Loading</h2>
-  }
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </div>
+      ) : null}
+    </>
+  );
 }
 
 export default GitHub;

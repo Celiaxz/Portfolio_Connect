@@ -19,35 +19,43 @@ function UserPage() {
     fetchUser();
   }, [id]);
 
-  if(user && wantedUser) {
+  if (user && wantedUser) {
     return (
       <>
-          <div className="profile-container">
-            <h1>Welcome to {wantedUser.username}'s page</h1>
-            <img style={{maxHeight: '200px', maxWidth: '200px', borderRadius: '50%'}} src={wantedUser.image} alt="profile image" />
-            <ul style={{listStyle: 'none'}}>
-              Skills:
-              {
-                wantedUser.skills.map((skill, index) => {
-                  return <li key={index}>{skill}</li>
-                })
-              }
-            </ul>
-            <p>{wantedUser.aboutMe}</p>
-  
-            <button
-              className={id !== user._id ? "hidden" : null}
-              onClick={() => navigate(`/user/update`)}
-            >
-              Update Profile
-            </button>
-  
-            <Link to={`/user/${id}/projects`}>Projects</Link>
-          </div>
+        <div className="profile-container">
+          <h1>Welcome to {wantedUser.username}'s page</h1>
+          <img
+            style={{
+              maxHeight: "200px",
+              maxWidth: "200px",
+              borderRadius: "50%",
+            }}
+            src={wantedUser.image}
+            alt="profile image"
+          />
+          <ul style={{ listStyle: "none" }}>
+            Skills:
+            {wantedUser.skills.map((skill, index) => {
+              return <li key={index}>{skill}</li>;
+            })}
+          </ul>
+          <p>{wantedUser.aboutMe}</p>
+
+          <button
+            className={id !== user._id ? "hidden" : null}
+            onClick={() => navigate(`/user/update`)}
+          >
+            Update Profile
+          </button>
+
+          <Link to={`/user/${id}/projects`}>Projects</Link>
+          <Link to={`/github/${user._id}`}>My Githhub Projects</Link>
+        </div>
       </>
-    )
+    );
   } else {
-    return <h2>...Loading</h2>
+    return <h2>...Loading</h2>;
   }
 }
+
 export default UserPage;
