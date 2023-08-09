@@ -26,6 +26,9 @@ function Navbar() {
               <NavLink to={`/otherUsers/${user._id}`} className="nav-link">
                 Other Users
               </NavLink>
+              <NavLink to="/search-projects" className="nav-link">
+                All projects
+              </NavLink>
               <Button onClick={handleLogout} className="nav-link">
                 Logout
               </Button>
