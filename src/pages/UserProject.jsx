@@ -3,12 +3,16 @@ import { AuthContext } from "../contexts/Auth.context";
 import { useParams } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config/config.index";
+import { Card, Button, Col, Row } from "antd";
+import Pagination from "../components/Pagination";
 
 function UserProject() {
   const { id } = useParams();
   const { isLoading, user } = useContext(AuthContext);
   const [wantedUser, setWantedUser] = useState(null);
   const [projects, setProjects] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 30;
   const navigate = useNavigate();
   useEffect(() => {
     async function fetchUser() {
@@ -49,43 +53,71 @@ function UserProject() {
   const redirectToProject = (projectId) => {
     navigate(`/projects/${projectId}`);
   };
+  //Calculate the index range for users to display on the current page
+  const totalPages = Math.ceil(projects.length / projectsPerPage);
+  const startIndex = (currentPage - 1) * projectsPerPage;
+  const endIndex = startIndex + projectsPerPage;
+  const projectsToDisplay = projects.slice(startIndex, endIndex);
 
-  if(user && wantedUser){
-    return (
-          <>
-            <h1>Welcome to {wantedUser ? wantedUser.username : null}'s page</h1>
-            <h2>Projects</h2>
-            {projects.map((project) => (
-              <div key={project._id} className="projects-list">
-                <p>
-                  <Link to={`/projects/${project._id}`}>{project.title}</Link>
-                </p>
-                <p>{project.technologies}</p>
-                <p>{project.repositoryLink}</p>
-                <p>{project.projectFolder}</p>
-                <button onClick={() => redirectToProject(project._id)}>
-                  See more
-                </button>
-                <button
-                  className={id !== user._id ? "hidden" : null}
-                  type="submit"
-                  onClick={() => updateProjectHandler(project._id)}
+  const handlePrevClick = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextClick = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  return (
+    <div className="user-project-container">
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <div>
+          <h1 className="welcome-User">
+            hi! {wantedUser ? wantedUser.username : null}
+          </h1>
+          <h2 className="user-Projects-Title">My Projects</h2>
+          <Row gutter={16}>
+            {projectsToDisplay.map((project) => (
+              <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
+                <Card
+                  className="project-card"
+                  title={
+                    <Link
+                      to={`/projects/${project._id}`}
+                      className="project-card-title"
+                    >
+                      {project.title}
+                    </Link>
+                  }
                 >
-                  Edit
-                </button>
-                <button
-                  className={id !== user._id ? "hidden" : null}
-                  type="submit"
-                  onClick={() => deleteProjectHandler(project._id)}
-                >
-                  delete
-                </button>
-              </div>
+                  <p>{project.technologies}</p>
+                  <p>{project.repositoryLink}</p>
+                  <p>{project.projectFolder}</p>
+                  <div className="project-card-actions">
+                    <Button onClick={() => redirectToProject(project._id)}>
+                      See more
+                    </Button>
+                    <Button onClick={() => updateProjectHandler(project._id)}>
+                      Edit
+                    </Button>
+                    <Button onClick={() => deleteProjectHandler(project._id)}>
+                      Delete
+                    </Button>
+                  </div>
+                </Card>
+              </Col>
             ))}
-          </>
-    );
-  } else {
-    return <h2>...Loading</h2>
-  }
+          </Row>
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPrevClick={handlePrevClick}
+            onNextClick={handleNextClick}
+          />
+        </div>
+      )}
+    </div>
+  );
 }
 export default UserProject;

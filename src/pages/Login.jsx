@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/Auth.context";
+import { Link } from "react-router-dom";
 import {
   TextInput,
   Paper,
@@ -54,11 +55,25 @@ function Login() {
             </Button>
           </Stack>
         </form>
+
         {errorMessage && (
           <Text align="center" color="red" style={{ marginTop: "1rem" }}>
             {errorMessage}
           </Text>
         )}
+        <div style={{ marginTop: "1rem", textAlign: "center" }}>
+          Not a member?{" "}
+          <Link
+            to="/signup"
+            style={{
+              color: "#002147",
+              fontWeight: "bold",
+              textDecoration: "none",
+            }}
+          >
+            Create an account
+          </Link>
+        </div>
       </Paper>
     </Container>
   );

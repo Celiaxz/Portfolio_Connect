@@ -45,10 +45,10 @@ function Signup() {
       }}
     >
       {" "}
-      <h1 style={{ fontSize: "5rem", marginBottom: "0.5rem" }}>
+      <h1 style={{ fontSize: "4rem", marginBottom: "0.5rem" }}>
         Join our Portfolio Community
       </h1>
-      <p style={{ fontSize: "2rem", marginBottom: "15rem" }}>
+      <p style={{ fontSize: "1.5rem", marginBottom: "15rem" }}>
         {" "}
         Connect with like-minded individuals, showcase your portfolio, and grow
         together.
@@ -87,15 +87,26 @@ function Signup() {
           </Stack>
         </form>
         <Text align="center" style={{ marginTop: "1rem" }}>
-          Already have an account? <Link to="/login">Click to login</Link>
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            style={{
+              color: "#002147",
+              fontWeight: "bold",
+              textDecoration: "none",
+            }}
+          >
+            {" "}
+            login here
+          </Link>
         </Text>
         <Text align="center" style={{ marginTop: "1rem", fontSize: "14px" }}>
           By continuing, you agree to PortfolioConnect's{" "}
           <Link
             to="#"
             style={{
-              color: "black",
-              fontWeight: "bold",
+              color: "#007bff",
+
               textDecoration: "none",
             }}
           >
@@ -105,8 +116,8 @@ function Signup() {
           <Link
             to="#"
             style={{
-              color: "black",
-              fontWeight: "bold",
+              color: "#007bff",
+
               textDecoration: "none",
             }}
           >
@@ -117,5 +128,4 @@ function Signup() {
     </Container>
   );
 }
-
 export default Signup;

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config/config.index";
+import { Card, Button, Col, Row } from "antd";
+import Pagination from "../components/Pagination";
 function SearchProjects() {
   // const [searchTerm, setSearchTerm] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [projects, setProjects] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 20;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -54,25 +58,63 @@ function SearchProjects() {
     navigate(`/projects/${projectId}`);
   };
 
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+  const startIndex = (currentPage - 1) * projectsPerPage;
+  const endIndex = startIndex + projectsPerPage;
+  const projectsToDisplay = filteredProjects.slice(startIndex, endIndex);
+
+  const handlePrevClick = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextClick = () => {
+    setCurrentPage(currentPage + 1);
+  };
   return (
-    <>
-      <h1>Search Projects</h1>
-      <input type="text" onChange={handleSearch} />
-      {/* <button onClick={handleSearch}>Search</button> */}
-      {filteredProjects.map((project) => (
-        <div className="projects-list" key={project._id}>
-          <p>
-            Title: <Link to={`/projects/${project._id}`}>{project.title}</Link>
-          </p>
-          <p>Technologies: {project.technologies}</p>
-          <p>Repository Link: {project.repositoryLink}</p>
-          <p>Project Folder: {project.projectFolder}</p>
-          <button onClick={() => redirectToProject(project._id)}>
-            See more
-          </button>
-        </div>
-      ))}
-    </>
+    <div className="search-projects-container">
+      <div className="search-input-container">
+        <h1 className="search-title">Search Projects :</h1>
+        <input
+          type="text"
+          onChange={handleSearch}
+          className="search-input"
+          placeholder="by title or technology..."
+        />
+      </div>
+
+      <Row gutter={16}>
+        {projectsToDisplay.map((project) => (
+          <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
+            <Card
+              className="search-project-card"
+              title={
+                <Link
+                  to={`/projects/${project._id}`}
+                  className="search-project-card-title"
+                >
+                  {project.title}
+                </Link>
+              }
+            >
+              <p>Technologies: {project.technologies}</p>
+              <p>Repository Link: {project.repositoryLink}</p>
+              <p>Project Folder: {project.projectFolder}</p>
+              <div className="search-project-card-actions">
+                <Button onClick={() => redirectToProject(project._id)}>
+                  See more
+                </Button>
+              </div>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPrevClick={handlePrevClick}
+        onNextClick={handleNextClick}
+      />
+    </div>
   );
 }
 
