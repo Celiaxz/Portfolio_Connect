@@ -1,26 +1,130 @@
-.project_page{
-   margin: 0 20px ;
+.project_page {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
-.project_page button{
-   display: block;
-   min-width: 60px;
-   margin-left: 10px;
-   margin-bottom: 10px;
-   padding: 5px;
-   border: none;
-   border-radius: 5px;
-   font-size: 0.9rem;
-   background: rgb(148, 197, 197);
-   cursor: pointer;
+.title_div {
+  margin-top: 20px;
+  width: 80vw;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.project_page button:hover{
-   background: rgb(66, 163, 163);
+.project_page button {
+  display: block;
+  min-width: 60px;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  background: rgb(148, 197, 197);
+  cursor: pointer;
 }
 
-.project_section{
+.project_page button:hover {
+  background: rgb(66, 163, 163);
+}
+
+.project_section {
+  width: 80vw;
+  display: grid;
+  flex-direction: column;
+  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 10px;
+  margin-bottom: 30px;
+  /* grid-auto-rows: minmax(100px, auto); */
+}
+
+.tech_list {
+  width: 200px;
+  line-height: 2rem;
+  list-style: none;
+  padding: 0;
+  background-color: rgba(0, 128, 128, 0.205);
+  padding: 15px;
+  border-radius: 10px;
+  word-break: break-all;
+  height: auto;
+  font-weight: bold;
+  grid-column: 1;
+}
+.tech_list li::before {
+  content: "➤ ";
+}
+
+.project_second_part {
+  grid-column: 2 / 5;
+  position: relative;
+}
+
+.author {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.author:hover {
+  color: teal;
+}
+
+.project_buttons {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.project_links {
+  display: block;
+  color: teal;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.description {
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.creator {
+  /* text-align: end; */
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+@media (max-width: 768px) {
+  .tech_list {
+    grid-row: 1;
+    grid-column: 1/5;
+    width: 100%;
+  }
+
+  .project_second_part {
+    grid-row: 2;
+    grid-column: 1/5;
+  }
+
+  .project_buttons {
+   position: static;
    display: flex;
-   flex-direction: column;
-   align-items: center;
+   flex-direction: row;
+  }
+
+  .project_link{
+   display: block;
+  }
 }

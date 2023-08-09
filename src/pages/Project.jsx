@@ -78,24 +78,28 @@ function Project() {
    } = currentProject
    return (
       <div className="project_page">
-         <div className="project_section">
-            <h2>Project : {title}</h2>
-            <p>{description}</p>
-            <ul>
-               {technologies.map((technology) => (
-                  <li key={technology}>{technology}</li>
-               ))}
-            </ul>
-            <Link to={repositoryLink}>Link to repo</Link>
-            <Link to={projectFolder}>Download project</Link>
-            <p>Creator: {userId.username}</p>
-            {user && userId._id === user._id && (
-               <>
-                  <button onClick={handleUpdateButton}>Update Project</button>
-                  <button onClick={handleDeleteButton}>Delete Project</button>
-               </>
+         <div className="title_div">
+               <h1>Project : {title}</h1>
+               {user && userId._id === user._id && (
+               <div className="project_buttons">
+                  <button className="project_link" onClick={handleUpdateButton}>Update Project</button>
+                  <button className="project_link" onClick={handleDeleteButton}>Delete Project</button>
+               </div>
             )}
          </div>
+            <div className="project_section">
+               <ul className="tech_list">
+                  {technologies.map((technology) => (
+                     <li key={technology}>{technology}</li>
+                  ))}
+               </ul>
+               <div className="project_second_part">
+               <p className="description">{description}</p>
+               <Link className="project_links" to={repositoryLink}>Link to repo</Link>
+               <Link className="project_links" to={projectFolder}>Download project</Link>
+               <p className="creator">by <Link className="author">{userId.username}</Link></p>
+               </div>
+            </div>
          <Comments projectId={projectId} setAllComments={setAllComments} allComments={allComments} />
       </div>
    );
