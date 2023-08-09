@@ -30,6 +30,9 @@
 }
 
 /* UserProject.css */
+.welcome-User {
+  font-size: 3rem;
+}
 .user-Projects-Title {
   text-align: center;
   font-size: 3rem;

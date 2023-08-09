@@ -57,7 +57,9 @@ function UserProject() {
         <p>Loading...</p>
       ) : (
         <div>
-          <h1>Welcome to {wantedUser ? wantedUser.username : null}'s page</h1>
+          <h1 className="welcome-User">
+            hi! {wantedUser ? wantedUser.username : null}
+          </h1>
           <h2 className="user-Projects-Title">My Projects</h2>
           <Row gutter={16}>
             {projects.map((project) => (
