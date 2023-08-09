@@ -81,16 +81,6 @@ function Project() {
         catch (error) {
             console.error(error)
         }
-        if (response.status === 201) {
-            try {
-                const response = await axios.get(`http://localhost:5005/project/${projectId}`);
-                setAllComments(response.data.comments);
-                setCommentContent("");
-            }
-            catch (error) {
-                console.error(error);
-            }
-        }
     }
 
     //Editing the comment
