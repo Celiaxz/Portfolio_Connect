@@ -77,10 +77,14 @@ function SearchProjects() {
   return (
     <div className="search-projects-container">
       <h1>Welcome to Search Projects</h1>
-      <input className="search-box" type="text" onChange={handleSearch} />
+      <input
+        type="text"
+        onChange={handleSearch}
+        placeholder="Search by title or technology"
+      />
       <h2>Projects</h2>
       <Row gutter={16}>
-        {projects.map((project) => (
+        {filteredProjects.map((project) => (
           <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
             <Card
               className="search-project-card"
