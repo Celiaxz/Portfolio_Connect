@@ -52,8 +52,8 @@ function GitHub() {
 
       return (
         <>
-          <div className="other-Users-container">
-            {/* <h2 className="user-Projects-Title">My Projects</h2> */}
+          <div className="github-container">
+            {/* <h2 className="github-projects-title">My Projects</h2> */}
             <img className="github-avatar" src={avatar} alt="" />
             <Row gutter={16}>
               {projectsToDisplay.map((project) => (

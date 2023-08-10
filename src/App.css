@@ -21,7 +21,8 @@ button:hover {
   font-size: 3rem;
 }
 .user-Projects-Title,
-.search-title {
+.search-title,
+.other-Users-title {
   text-align: center;
   font-size: 3rem;
   font-weight: 800;
@@ -35,8 +36,8 @@ button:hover {
 .search-project-card,
 .other-Users-card {
   margin-bottom: 20px;
-  background-color: #87a96b;
-  border: 1px solid #ccc;
+  background-color: #9ec5ab;
+  /* border: 1px solid #ccc; */
   border-radius: 10px;
   color: #100c08;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -99,11 +100,12 @@ button:hover {
   background-color: #006a4e;
   border-color: #006a4e;
 }
-.other-Users-container {
-  padding-top: 10rem;
-  /* padding: 20px;
- 
-  margin-top: 10rem; */
+.other-Users-github {
+  /* padding-top: 10rem; */
+  padding: 10% 2% 2% 2%;
+}
+.github-container {
+  padding: 5% 2% 2% 2%;
 }
 
 .other-Users-container p {
@@ -124,8 +126,10 @@ button:hover {
   font-weight: 800;
 }
 .others-nav {
-  background-color: #006a4e;
-  color: white;
+  /* background-color: #006a4e; */
+  color: #32746d;
+  font-weight: 900;
+  font-size: 1.1rem;
 }
 .github-avatar {
   max-height: 300px;
