@@ -9,7 +9,7 @@ function UpdateUser() {
   const [githubUsername, setGithubUsername] = useState("");
   const [email, setEmail] = useState("");
   const [skills, setSkills] = useState("");
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
   const [aboutMe, setAboutMe] = useState("");
 
   useEffect(() => {
@@ -18,7 +18,6 @@ function UpdateUser() {
       setGithubUsername(user.githubUsername || "");
       setEmail(user.email || "");
       setSkills(user.skills || "");
-      setImage(user.image || "");
       setAboutMe(user.aboutMe || "");
     }
   }, [user]);
@@ -29,32 +28,49 @@ function UpdateUser() {
     event.preventDefault();
 
     try {
-      const reader = new FileReader()
-      reader.readAsDataURL(image)
-      reader.onloadend = async () => {
-        const cloudinaryResponse = await axios.post(
-          'https://api.cloudinary.com/v1_1/dil1ycvmp/image/upload',
-          {
-            file: reader.result,
-            upload_preset: "aitdf0nt" 
+      if(image){
+        const reader = new FileReader()
+        reader.readAsDataURL(image)
+        reader.onloadend = async () => {
+          const cloudinaryResponse = await axios.post(
+            'https://api.cloudinary.com/v1_1/dil1ycvmp/image/upload',
+            {
+              file: reader.result,
+              upload_preset: "aitdf0nt" 
+            }
+          )
+          if (cloudinaryResponse.status === 200){
+            const payload = {
+              username,
+              githubUsername,
+              email,
+              skills,
+              image: cloudinaryResponse.data.url,
+              aboutMe,
+            };
+            const response = await axios.put(
+              `${BASE_URL}/user/update/${user._id}`,
+              payload
+            );
+            if (response.status === 200) {
+              navigate(`/user/${user._id}`);
+            }
           }
-        )
-        if (cloudinaryResponse.status === 200){
-          const payload = {
-            username,
-            githubUsername,
-            email,
-            skills,
-            image: cloudinaryResponse.data.url,
-            aboutMe,
-          };
-          const response = await axios.put(
-            `${BASE_URL}/user/update/${user._id}`,
-            payload
-          );
-          if (response.status === 200) {
-            navigate(`/user/${user._id}`);
-          }
+        }
+      } else {
+        const payload = {
+          username,
+          githubUsername,
+          email,
+          skills,
+          aboutMe,
+        };
+        const response = await axios.put(
+          `${BASE_URL}/user/update/${user._id}`,
+          payload
+        );
+        if (response.status === 200) {
+          navigate(`/user/${user._id}`);
         }
       }
     } catch (error) {

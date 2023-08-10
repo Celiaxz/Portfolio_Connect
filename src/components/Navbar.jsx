@@ -35,7 +35,7 @@ function Navbar() {
             </>
           ) : (
             <>
-              <NavLink exact to="/" className="nav-link">
+              <NavLink exact="true" to="/" className="nav-link">
                 Home
               </NavLink>
               <NavLink to="/signup" className="nav-link">

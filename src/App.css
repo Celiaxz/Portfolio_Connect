@@ -1,6 +1,7 @@
 #root {
   margin: 0 auto;
 }
+
 .navbar-container {
   display: flex;
   justify-content: space-between;
