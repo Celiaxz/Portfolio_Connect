@@ -11,7 +11,7 @@ import Project from "./pages/Project";
 import SearchProject from "./pages/SearchProject";
 import UserPage from "./pages/UserPage";
 import GitHub from "./pages/GitHub";
-import OtherUsers from "./pages/OtherUsers";
+import OthersGithub from "./pages/OthersGithub";
 import UpdateUser from "./pages/UpdateUser";
 import Footer from "./components/Footer";
 
@@ -26,16 +26,19 @@ function App() {
         <Route path="/create-project" element={<CreateProject />} />
         <Route path="/projects/:projectId/update" element={<UpdateProject />} />
         <Route path="/projects/:projectId" element={<Project />} />
-        {/* <Route path="/projects" element={<Projects />} /> */}
         <Route path="/search-projects" element={<SearchProject />} />
         <Route path="/user/:id" element={<UserPage />} />
         <Route path="/user/update" element={<UpdateUser />} />
         <Route path="/user/:id/projects" element={<UserProject />} />
         <Route path="/github/:id" element={<GitHub />} />
+<<<<<<< HEAD
         <Route path="/otherUsers/:id" element={<OtherUsers />} />
         <Route path="*" element={<h1>404 page</h1>} />
+=======
+        <Route path="/otherUsers/:id" element={<OthersGithub />} />
+>>>>>>> 0f8731b (code refactor)
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
 }

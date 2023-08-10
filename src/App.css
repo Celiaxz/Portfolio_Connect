@@ -3,133 +3,34 @@
   color: #011502;
 }
 
-
 button {
   background-color: #32746d !important;
-  font-size: 1rem;
 }
 
 button:hover {
   background: #104f55 !important;
 }
 
-.logout_button{
-  margin-left: 20px;
+.app-name {
+  margin: 0;
 }
 
-/* UserProject */
-.welcome-User {
-  font-size: 3rem;
-}
-.user-Projects-Title,
-.search-title {
-  text-align: center;
-  font-size: 3rem;
-  font-weight: 800;
-  padding-bottom: 3%;
-}
-.user-project-container {
-  padding: 20px;
-}
-
-.project-card,
-.search-project-card,
-.other-Users-card {
-  margin-bottom: 20px;
-  background-color: #87a96b;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  color: #100c08;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-weight: 800;
-  font-size: 1rem;
-}
-
-.project-card-actions,
-.search-project-card-actions {
+.nav-link {
   display: flex;
-  justify-content: space-between;
-}
-.project-card-title,
-.search-project-card-title {
-  font-weight: 800;
-  /* background-color: #006a4e; */
-  color: white;
-  padding-left: 40%;
-}
-/* .project-card-actions,
-.search-project-card-actions button {
-  border-color: #006a4e;
-  font-weight: 500;
-}
-
-.project-card-actions button:hover {
-  background-color: #006a4e;
-  border-color: #006a4e;
-} */
-
-/* SearchProjects */
-.search-projects-container {
-  padding: 20px;
-}
-.search-input-container {
-  text-align: center;
-  margin-top: 20px;
-  position: relative;
-}
-
-.search-input {
-  width: 600px;
-  padding: 15px;
-  border: 2px solid #006a4e;
-  border-radius: 20px;
-  font-size: 16px;
-  outline: none;
-  transition: border-color 0.3s ease-in-out;
   align-items: center;
-  margin-bottom: 7%;
-}
-.search-input:focus::placeholder {
-  visibility: hidden;
-}
-.search-input::placeholder {
-  visibility: visible;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 16px;
-  color: rgb(14, 14, 14);
-}
-.search-project-card-actions button:hover {
-  background-color: #006a4e;
-  border-color: #006a4e;
-}
-.other-Users-container {
-  padding-top: 10rem;
+  gap: 40px;
+  text-decoration: none;
+  color: #0066b2;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 20px;
+  transition: color 0.3s ease;
 }
 
-.other-Users-container p {
-  white-space: normal;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-height: 150px;
+.nav-link:hover {
+  color: #011502;
 }
 
-.other-Users-card img{
-  max-width: 90%;
-  cursor: pointer;
-}
-
-.other-Users-card-title {
-  font-weight: 800;
-  padding-left: 40%;
-  font-weight: 800;
-}
-.others-nav {
-  background-color: #006a4e;
-  color: white;
-}
 .hidden {
   display: none;
 }
