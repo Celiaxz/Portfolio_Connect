@@ -1,3 +1,13 @@
+.form_container{
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px #104f552a;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 50px;
+  padding:50px 0;
+  width: 60vw;
+}
+
 .project_form {
   display: flex;
   flex-direction: column;
@@ -7,6 +17,7 @@
 
 .project_h1 {
   text-align: center;
+  color: #104F55;
 }
 
 label {
@@ -26,6 +37,7 @@ label {
 
 .project_form textarea {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  min-height: 200px;
 }
 
 .form_inputs {
