@@ -3,8 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config/config.index";
 import { Card, Button, Col, Row } from "antd";
 import Pagination from "../components/Pagination";
+import "./AllCardsProjectsListing.css";
 function SearchProjects() {
-  // const [searchTerm, setSearchTerm] = useState("");
   const [filteredProjects, setFilteredProjects] = useState([]);
   const [projects, setProjects] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
