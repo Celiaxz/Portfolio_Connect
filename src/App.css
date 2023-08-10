@@ -1,11 +1,21 @@
 #root {
   margin: 0 auto;
+  color: #011502;
 }
 .navbar-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+}
+
+button {
+  background-color: #32746d !important;
+  font-size: 1rem;
+}
+
+button:hover {
+  background: #104f55 !important;
 }
 
 .app-name {
@@ -68,7 +78,7 @@
   color: white;
   padding-left: 40%;
 }
-.project-card-actions,
+/* .project-card-actions,
 .search-project-card-actions button {
   border-color: #006a4e;
   font-weight: 500;
@@ -77,7 +87,8 @@
 .project-card-actions button:hover {
   background-color: #006a4e;
   border-color: #006a4e;
-}
+} */
+
 /* SearchProjects */
 .search-projects-container {
   padding: 20px;

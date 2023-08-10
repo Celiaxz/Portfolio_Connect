@@ -5,27 +5,19 @@
   margin-top: 50px;
 }
 
-.project_h1{
-   text-align: center;
+.project_h1 {
+  text-align: center;
 }
 
-label{
-   font-size: 1.5rem;
-   font-weight: bold;
-   color:  rgb(0, 90, 90);
+label {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(0, 90, 90);
 }
 
 .submit_button {
   display: block;
-  min-width: 60px;
-  margin-left: 10px;
-  margin-bottom: 10px;
-  padding: 5px;
-  border: none;
-  border-radius: 5px;
-  font-size: 0.9rem;
-  background: rgb(148, 197, 197);
-  cursor: pointer;
+  padding: 0 20px;
 }
 
 .submit_button:hover {
@@ -59,34 +51,23 @@ label{
   gap: 5px;
 }
 
-input, textarea{
-   font-size: 1rem;
+input,
+textarea {
+  font-size: 1rem;
 }
 input::placeholder,
 textarea::placeholder {
   color: rgba(0, 128, 128, 0.346);
 }
 
-textarea{
-   height: 100px;
+textarea {
+  height: 100px;
 }
 
-.technologies_inputs button {
-  background-color: rgb(150, 201, 201);
-  border: none;
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.technologies_inputs button:hover {
-  background: rgb(66, 163, 163);
-}
 .add_tech_div {
   margin-top: 5px;
   display: flex;
+  align-items: center;
   gap: 5px;
 }
 .add_tech_div p {
@@ -95,9 +76,8 @@ textarea{
   margin: 0;
 }
 
-
 @media (max-width: 768px) {
-  .form_inputs{
+  .form_inputs {
     justify-content: center;
     flex-wrap: wrap;
   }

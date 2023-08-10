@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/Auth.context";
 import { BASE_URL } from "../config/config.index";
+import { Button, Textarea } from "@mantine/core";
 import "./Comments.css";
 
 function Comments({ projectId, allComments, setAllComments }) {
@@ -82,42 +83,42 @@ function Comments({ projectId, allComments, setAllComments }) {
                      {editComment && commentToEdit === comment._id ? (
                         <div>
                            <div className="comment_infos">
-                              <p>From <Link to={`/user/${comment.userId._id}`} className="comment_author">{comment.userId.username}</Link></p>
-                              <p className="comment_date">{comment.date}</p>
+                              <p>From <Link to={`/user/${comment.userId._id}`} className="author">{comment.userId.username}</Link></p>
+                              <p className="comment_date">{comment.date.split("-").join('/').split("T").join(' ').split('.').splice(0,1)}</p>
                            </div>
                            <form>
                               <label>
-                                 <textarea
+                                 <Textarea
                                     className="comment_textarea"
                                     value={editedComment}
                                     onChange={(e) => setEditedComment(e.target.value)}
                                     required />
                               </label>
-                              <button onClick={(e) => {
+                              <Button onClick={(e) => {
                                  e.preventDefault()
                                  handleEditComment(comment._id)
                               }}>
                                  Save
-                              </button>
+                              </Button>
                            </form>
                         </div>
                      ) : (
                         <div>
                            <div className="comment_infos">
                               <p>From <Link to={`/user/${comment.userId._id}`} className="author">{comment.userId.username}</Link></p>
-                              <p className="comment_date">{comment.date}</p>
+                              <p className="comment_date">{comment.date.split("-").join('/').split("T").join(' ').split('.').splice(0,1)}</p>
                            </div>
                            <p className="comment">{comment.comment}</p>
                            {user && comment.userId._id === user._id && (
                               <div className="comments_buttons">
-                                 <button onClick={() => {
+                                 <Button onClick={() => {
                                     setEditComment(true);
                                     setCommentToEdit(comment._id);
                                     setEditedComment(comment.comment);
                                  }}>
                                     ✎ Edit
-                                 </button>
-                                 <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
+                                 </Button>
+                                 <Button onClick={() => handleDeleteComment(comment._id)}>Delete</Button>
                               </div>
                            )}
                         </div>
@@ -128,13 +129,13 @@ function Comments({ projectId, allComments, setAllComments }) {
                <h3>Add a comment :</h3>
                <form className="new_comment" onSubmit={handleNewComment}>
                   <label>
-                     <textarea
+                     <Textarea
                         className="comment_textarea"
                         value={commentContent}
                         onChange={(e) => setCommentContent(e.target.value)}
                         required />
                   </label>
-                  <button type="submit">Post</button>
+                  <Button type="submit">Post</Button>
                </form>
          </div>
       </>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/Auth.context";
 import { BASE_URL } from "../config/config.index";
 import "./ProjectForm.css"
+import { Button, TextInput, Textarea } from "@mantine/core";
 
 function ProjectForm(props) {
    const { user } = useContext(AuthContext);
@@ -90,36 +91,33 @@ function ProjectForm(props) {
          <div className="form_inputs">
             <div className="no_tech_inputs">
                <label>Project Name</label>
-               <input type="text" value={title} placeholder="title" onChange={(e) => { setTitle(e.target.value) }} />
+               <TextInput type="text" value={title} onChange={(e) => { setTitle(e.target.value) }} />
                <label>Description:</label>
-               <textarea value={description} placeholder="description" onChange={(e) => { setDescription(e.target.value) }} />
-               <label>
-                  Repository Link</label>
-               <input type="text" value={repositoryLink} placeholder="repositoryLink" onChange={(e) => { setRepositoryLink(e.target.value) }} />
-               <label> Download link</label>
-               <input type="text" value={projectFolder}
-                  placeholder="projectFolder"
-                  onChange={(e) => { setProjectFolder(e.target.value) }} />
+               <Textarea value={description} onChange={(e) => { setDescription(e.target.value) }} />
+               <label>Repository Link</label>
+               <TextInput type="text" value={repositoryLink} onChange={(e) => { setRepositoryLink(e.target.value) }} />
+               <label>Download link</label>
+               <TextInput type="text" value={projectFolder} onChange={(e) => { setProjectFolder(e.target.value) }} />
             </div>
             <div className="technologies_inputs">
                <label>Technologies</label>
                {technologies.map((tech, index) => (
                   <div key={index} className="one_tech_input">
-                     <input
+                     <TextInput
                         type="text"
                         value={tech}
                         placeholder={`Technology`}
                         onChange={(e) => handleTechChange(e, index)}
                      />
-                     <button type="button" className="tech_button" onClick={() => handleRemoveTech(index)}>-</button>
+                     <Button type="button" className="tech_button" onClick={() => handleRemoveTech(index)}>-</Button>
                   </div>
                ))}
                <div className="add_tech_div"><p>Add new</p>
-               <button type="button" className="tech_button" onClick={handleAddTech}>+</button>
+               <Button type="button" className="tech_button" onClick={handleAddTech}>+</Button>
                </div>
             </div>
          </div>
-         <button className="submit_button" type="submit">{props.isNewProject ? "Create New Project" : "Update Project"}</button>
+         <Button className="submit_button" type="submit">{props.isNewProject ? "Create New Project" : "Update Project"}</Button>
       </form>
       </>
    );
