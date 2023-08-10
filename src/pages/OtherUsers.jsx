@@ -54,7 +54,11 @@ function OtherUsers() {
                   </span>
                 }
               >
-                <img src={user.image} alt="" />
+                <img
+                  onClick={() => navigate(`/user/${user._id}`)}
+                  src={user.image ? user.image : "/default-avatar.png"}
+                  alt="profile-picture"
+                />
                 <p>{user.aboutMe ? user.aboutMe : "My Bio"}</p>
                 <NavLink className="others-nav" to={`/github/${user._id}`}>
                   Github Projects

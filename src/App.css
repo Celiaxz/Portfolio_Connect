@@ -130,6 +130,12 @@ button:hover {
 .other-Users-container {
   padding-top: 10rem;
 }
+
+.other-Users-card img{
+  max-width: 90%;
+  cursor: pointer;
+}
+
 .other-Users-card-title {
   font-weight: 800;
   padding-left: 40%;

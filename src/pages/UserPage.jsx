@@ -41,7 +41,7 @@ function UserPage() {
                       maxWidth: "200px",
                       borderRadius: "50%",
                     }}
-                    src={wantedUser.image}
+                    src={wantedUser.image ? wantedUser.image : "/default-avatar.png"}
                     alt="profile image"
                   />
                 </div>
