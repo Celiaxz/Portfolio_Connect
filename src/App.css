@@ -131,6 +131,13 @@ button:hover {
   padding-top: 10rem;
 }
 
+.other-Users-container p {
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 150px;
+}
+
 .other-Users-card img{
   max-width: 90%;
   cursor: pointer;
