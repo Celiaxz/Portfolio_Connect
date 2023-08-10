@@ -31,12 +31,8 @@ function App() {
         <Route path="/user/update" element={<UpdateUser />} />
         <Route path="/user/:id/projects" element={<UserProject />} />
         <Route path="/github/:id" element={<GitHub />} />
-<<<<<<< HEAD
-        <Route path="/otherUsers/:id" element={<OtherUsers />} />
-        <Route path="*" element={<h1>404 page</h1>} />
-=======
         <Route path="/otherUsers/:id" element={<OthersGithub />} />
->>>>>>> 0f8731b (code refactor)
+        <Route path="*" element={<h1>404 page</h1>} />
       </Routes>
       <Footer />
     </>
