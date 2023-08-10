@@ -115,7 +115,7 @@ function Comments({ projectId, allComments, setAllComments }) {
                                     setCommentToEdit(comment._id);
                                     setEditedComment(comment.comment);
                                  }}>
-                                    Edit
+                                    ✎ Edit
                                  </button>
                                  <button onClick={() => handleDeleteComment(comment._id)}>Delete</button>
                               </div>

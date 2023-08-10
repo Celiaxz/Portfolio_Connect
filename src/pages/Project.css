@@ -26,7 +26,8 @@
   border: none;
   border-radius: 5px;
   font-size: 0.9rem;
-  background: rgb(148, 197, 197);
+  color: white;
+  background: rgb(106, 175, 175);
   cursor: pointer;
 }
 
