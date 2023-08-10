@@ -5,9 +5,18 @@ import ConnectIcon from "/connect_icon.svg"
 import GithubIcon from "/github.svg"
 import FeedbackIcon from "/feedbacks_icon.svg"
 import "./HomePage.css"
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
   const { user, isLoading, isLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate()
+
+  const handleSignUp=()=>{
+navigate('signup')
+  }
+  const handleLogin=()=>{
+    navigate('/login')
+  }
 
   if (isLoading) {
     return <p>Loading...</p>
@@ -62,8 +71,8 @@ function HomePage() {
             <p>
               Dive into a world of coding innovation and join us on the journey of coding exploration, collaboration, and mutual growth. Let's build, learn, and connect together on Portfolio Connect.
             </p>
-            <button type="button" className="homepage_button">Sign Up</button>
-            <button type="button" className="homepage_button">Login</button>
+            <button type="button" className="homepage_button" onClick={handleSignUp}>Sign Up</button>
+            <button type="button" className="homepage_button" onClick={handleLogin}>Login</button>
           </div>}
           </main>
         </div>
