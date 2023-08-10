@@ -1,6 +1,6 @@
 .project_page {
   color: #104f55;
-  margin: 0;
+  
   width: 90vw;
   display: flex;
   flex-direction: column;
@@ -11,6 +11,7 @@
     border-radius: 5px;
     margin: auto;
     margin-top: 50px;
+    margin-bottom: 70px;
     padding:50px 0;
 }
 
