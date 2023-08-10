@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BASE_URL } from "../config/config.index";
 import { Card, Button, Col, Row } from "antd";
 import Pagination from "../components/Pagination";
+import "./AllCardsProjectsListing.css";
 
 function UserProject() {
   const { id } = useParams();
@@ -38,7 +39,6 @@ function UserProject() {
       });
 
       if (response.status === 200) {
-        // Project was deleted successfully, remove it from the state
         setProjects((prevProjects) =>
           prevProjects.filter((project) => project._id !== projectId)
         );
@@ -53,7 +53,6 @@ function UserProject() {
   const redirectToProject = (projectId) => {
     navigate(`/projects/${projectId}`);
   };
-  //Calculate the index range for users to display on the current page
   const totalPages = Math.ceil(projects.length / projectsPerPage);
   const startIndex = (currentPage - 1) * projectsPerPage;
   const endIndex = startIndex + projectsPerPage;

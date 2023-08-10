@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { BASE_URL } from "../config/config.index";
 import { Card, Button, Col, Row } from "antd";
 import Pagination from "../components/Pagination";
+import "./AllCardsProjectsListing.css";
 function GitHub() {
   const { id } = useParams();
   const [projects, setProjects] = useState(undefined);
@@ -30,7 +31,6 @@ function GitHub() {
 
   if (projects) {
     if (!projects.message) {
-      // Calculate the index range for projects to display on the current page
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
       const projectsToDisplay = projects?.slice(startIndex, endIndex) || [];
@@ -38,14 +38,11 @@ function GitHub() {
       const avatar = projects?.[0].owner.avatar_url;
       const isLoading = projects !== undefined;
 
-      // Calculate totalPages based on the number of projects
       const totalPages = Math.ceil((projects?.length || 0) / itemsPerPage);
 
-      // Define click handlers for pagination
       const handlePrevClick = () => {
         setCurrentPage(currentPage - 1);
       };
-
       const handleNextClick = () => {
         setCurrentPage(currentPage + 1);
       };

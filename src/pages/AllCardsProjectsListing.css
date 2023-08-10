@@ -1,0 +1,115 @@
+/* UserProject */
+.welcome-User {
+  font-size: 3rem;
+}
+.user-Projects-Title,
+.search-title,
+.other-Users-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 800;
+  padding-bottom: 3%;
+}
+.user-project-container {
+  padding: 20px;
+}
+
+.project-card,
+.search-project-card,
+.other-Users-card {
+  margin-bottom: 20px;
+  background-color: #9ec5ab;
+  border-radius: 10px;
+  color: #100c08;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-weight: 800;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card-actions,
+.search-project-card-actions {
+  display: flex;
+  justify-content: space-between;
+}
+.project-card-title,
+.search-project-card-title {
+  font-weight: 800;
+  color: white;
+  padding-left: 40%;
+}
+
+/* SearchProjects */
+.search-projects-container {
+  padding: 20px;
+}
+.search-input-container {
+  text-align: center;
+  margin-top: 20px;
+  position: relative;
+}
+
+.search-input {
+  width: 600px;
+  padding: 15px;
+  border: 2px solid #006a4e;
+  border-radius: 20px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+  align-items: center;
+  margin-bottom: 7%;
+}
+.search-input:focus::placeholder {
+  visibility: hidden;
+}
+.search-input::placeholder {
+  visibility: visible;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: rgb(14, 14, 14);
+}
+.search-project-card-actions button:hover {
+  background-color: #006a4e;
+  border-color: #006a4e;
+}
+.other-Users-github {
+  padding: 10% 2% 2% 2%;
+}
+.github-container {
+  padding: 5% 2% 2% 2%;
+}
+.other-Users-card img {
+  max-width: 90%;
+  cursor: pointer;
+}
+
+.other-Users-card-title {
+  font-weight: 800;
+  padding-left: 40%;
+  font-weight: 800;
+}
+.others-nav {
+  color: #32746d;
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+.github-avatar {
+  max-height: 300px;
+  max-width: 200px;
+
+  padding-left: 50%;
+}
+.project-card Button {
+  color: whitesmoke;
+}
+.search-project-card-actions Button {
+  color: whitesmoke;
+}
