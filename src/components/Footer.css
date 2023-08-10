@@ -1,0 +1,13 @@
+/* Footer.css */
+
+.footer {
+  padding: 10px;
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+}
+
+.footer_text{
+  text-align: end;
+  margin-right: 20px;
+}

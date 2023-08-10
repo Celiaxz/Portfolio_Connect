@@ -30,11 +30,11 @@ function Login() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
+        height: "80vh"
       }}
     >
       <h1 style={{ fontSize: "4rem", marginBottom: "5rem" }}>Login</h1>
-      <Paper padding="lg" shadow="xs" style={{ width: "550px" }}>
+      <Paper padding="lg" shadow="xs" style={{ width: "550px", padding:"50px" }}>
         <form onSubmit={handleSubmit}>
           <Stack spacing="lg">
             <TextInput

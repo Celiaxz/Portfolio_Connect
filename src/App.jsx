@@ -13,6 +13,7 @@ import UserPage from "./pages/UserPage";
 import GitHub from "./pages/GitHub";
 import OtherUsers from "./pages/OtherUsers";
 import UpdateUser from "./pages/UpdateUser";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path="/github/:id" element={<GitHub />} />
         <Route path="/otherUsers/:id" element={<OtherUsers />} />
       </Routes>
+      <Footer/>
     </>
   );
 }
