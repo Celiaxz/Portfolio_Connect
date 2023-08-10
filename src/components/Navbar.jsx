@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/Auth.context";
 import { Container, Button } from "@mantine/core";
+import "./Navbar.css"
 
 function Navbar() {
   const { user, isLoggedIn, handleLogout } = useContext(AuthContext);

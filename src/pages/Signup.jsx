@@ -41,19 +41,19 @@ function Signup() {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        height: "100vh",
+        height: "80vh",
       }}
     >
       {" "}
       <h1 style={{ fontSize: "4rem", marginBottom: "0.5rem" }}>
         Join our Portfolio Community
       </h1>
-      <p style={{ fontSize: "1.5rem", marginBottom: "15rem" }}>
+      <p style={{ fontSize: "1.5rem", marginBottom: "1rem" }}>
         {" "}
         Connect with like-minded individuals, showcase your portfolio, and grow
         together.
       </p>
-      <Paper padding="lg" shadow="xs" style={{ width: "500px" }}>
+      <Paper padding="lg" shadow="xs" style={{ width: "500px" , padding:"50px"}}>
         <form onSubmit={handleLogin}>
           <Stack spacing="lg">
             <TextInput
