@@ -18,6 +18,10 @@
   color: #01200f;
 }
 
+.header h1{
+  color: #f0fcf4;
+}
+
 .intro {
   font-size: 3rem;
   font-weight: 200;
