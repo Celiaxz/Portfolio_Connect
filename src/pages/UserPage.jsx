@@ -36,11 +36,6 @@ function UserPage() {
               <Grid.Col>
                 <div height={SECONDARY_COL_HEIGHT} radius="md" animate="false">
                   <img
-                    style={{
-                      maxHeight: "200px",
-                      maxWidth: "200px",
-                      borderRadius: "50%",
-                    }}
                     src={wantedUser.image ? wantedUser.image : "/default-avatar.png"}
                     alt="profile image"
                   />
