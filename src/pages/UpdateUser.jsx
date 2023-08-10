@@ -3,12 +3,15 @@ import { AuthContext } from "../contexts/Auth.context";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../config/config.index";
+import { Button, FileInput, TextInput, Textarea } from "@mantine/core";
+import "./UpdateUser.css"
+
 function UpdateUser() {
   const { user } = useContext(AuthContext);
   const [username, setUserame] = useState("");
   const [githubUsername, setGithubUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [skills, setSkills] = useState("");
+  const [skills, setSkills] = useState([]);
   const [image, setImage] = useState(null);
   const [aboutMe, setAboutMe] = useState("");
 
@@ -78,57 +81,80 @@ function UpdateUser() {
       }
   };
 
+  const handleAddSkill = () => {
+    const newSkillAdded = [...skills, ""]
+    setSkills(newSkillAdded)
+ }
+
+ const handleSkillChange= (e, index)=>{
+    const updatedSkills = [...skills];
+    updatedSkills[index] = e.target.value;
+    setSkills(updatedSkills);
+ }
+
+ const handleRemoveSkill = (index)=>{
+    const removedSkill = [...skills]
+    removedSkill.splice(index, 1)
+    setSkills(removedSkill)
+ }
+
   return (
-    <>
+    <div className="form-container">
       <h1>Update User Page</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            value={username}
-            onChange={(event) => setUserame(event.target.value)}
-          />
-        </label>
-        <label>
-          GitHub Username:
-          <input
-            value={githubUsername}
-            onChange={(event) => setGithubUsername(event.target.value)}
-          />
-        </label>
-        <label>
-          E-mail:
-          <input
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
-        </label>
-        <label>
-          Skills:
-          <input
-            value={skills}
-            onChange={(event) => setSkills(event.target.value)}
-          />
-        </label>
-        <label>
-          Profile Image:
-          <input
-            type="file"
-            onChange={(event) => setImage(event.target.files[0])}
-          />
-        </label>
-        <label>
-          About Me:
-          <textarea
-            rows="10"
-            cols="50"
-            value={aboutMe}
-            onChange={(event) => setAboutMe(event.target.value)}
-          />
-        </label>
-        <button type="submit">Edit</button>
+      <form className="user-form" onSubmit={handleSubmit}>
+        <div className="form-inputs">
+          <div className="non-skill-inputs">
+            <label>Username</label>
+              <TextInput
+                value={username}
+                onChange={(event) => setUserame(event.target.value)}
+              />
+            <label>GitHub Username</label>
+              <TextInput
+                value={githubUsername}
+                onChange={(event) => setGithubUsername(event.target.value)}
+              />
+            <label>E-mail</label>
+              <TextInput
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            <label>Profile Image</label>
+              <FileInput
+                className="upload-button"
+                type="file"
+                placeholder="Upload Image"
+                value={image}
+                onChange={setImage}
+              />
+            <label>About Me</label>
+              <Textarea
+                rows="10"
+                cols="50"
+                value={aboutMe}
+                onChange={(event) => setAboutMe(event.target.value)}
+              />
+          </div>
+          <div className="skill-inputs">
+            <label>Skills</label>
+            {skills.map((skill, index) => (
+              <div key={index} className="one-skill-input">
+                <TextInput
+                  value={skill}
+                  onChange={(event) => handleSkillChange(event, index)}
+                />
+                <Button type="button" className="skill-button" onClick={() => handleRemoveSkill(index)}>-</Button>
+              </div>
+            ))}
+            <div className="add-skill-div">
+              <p>Add new</p>
+              <Button type="button" className="skill-button" onClick={handleAddSkill}>+</Button>
+            </div>
+          </div>
+        </div>
+        <Button className="submit-button" type="submit">Update</Button>
       </form>
-    </>
+    </div>
   );
 }
 
