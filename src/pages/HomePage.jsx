@@ -15,14 +15,9 @@ function HomePage() {
 
   return (
     <>
-      {isLoggedIn ? (
-        <>
-          <h1>Welcome {user ? user.username : null}!</h1>
-        </>
-      ) : (
         <div className="homePage_container">
           <header className="header">
-            <h1>Welcome to Portfolio Connect !</h1>
+            <h1>Welcome to Portfolio Connect {user && user.username}!</h1>
             <p className="intro">
               Unleash coding creativity and collaboration with Portfolio Connect. Your space to shine, connect, and showcase projects.          </p>
           </header>
@@ -62,17 +57,16 @@ function HomePage() {
               Receive valuable feedback from developers. Constructive critiques and tips will help you grow and refine your skills.              </p>
             </div>
           </div>
-
+          {!isLoggedIn && 
           <div className="second_box">
             <p>
               Dive into a world of coding innovation and join us on the journey of coding exploration, collaboration, and mutual growth. Let's build, learn, and connect together on Portfolio Connect.
             </p>
             <button type="button" className="homepage_button">Sign Up</button>
             <button type="button" className="homepage_button">Login</button>
-          </div>
+          </div>}
           </main>
         </div>
-      )}
     </>
   );
 }
