@@ -29,8 +29,8 @@ function UserPage() {
   if (user && wantedUser) {
     return (
       <>
-        <h1>Welcome to {wantedUser.username}'s page</h1>
         <Container my="md">
+        <h1>Welcome to {wantedUser.username}'s page</h1>
           <SimpleGrid cols={2} spacing="md" breakpoints={[{ maxWidth: 'sm', cols: 1 }]}>
             <Grid gutter="md">
               <Grid.Col>
