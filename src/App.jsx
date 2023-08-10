@@ -33,6 +33,7 @@ function App() {
         <Route path="/user/:id/projects" element={<UserProject />} />
         <Route path="/github/:id" element={<GitHub />} />
         <Route path="/otherUsers/:id" element={<OtherUsers />} />
+        <Route path="*" element={<h1>404 page</h1>} />
       </Routes>
       <Footer/>
     </>
