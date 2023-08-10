@@ -42,6 +42,12 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-weight: 800;
   font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* height: 200px; Set a fixed height for the card */
+  display: flex;
+  flex-direction: column;
 }
 
 .project-card-actions,
@@ -56,16 +62,6 @@ button:hover {
   color: white;
   padding-left: 40%;
 }
-/* .project-card-actions,
-.search-project-card-actions button {
-  border-color: #006a4e;
-  font-weight: 500;
-}
-
-.project-card-actions button:hover {
-  background-color: #006a4e;
-  border-color: #006a4e;
-} */
 
 /* SearchProjects */
 .search-projects-container {
