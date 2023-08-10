@@ -1,0 +1,29 @@
+.navbar-container {
+  background-color: #104f55;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #f0fcf4;
+}
+.app-name {
+  padding-left: 30px;
+  color: #f0fcf4;
+  text-decoration: none;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: #f0fcf4;
+  text-decoration: none;
+  padding: 10px 30px;
+  font-weight: 500;
+  font-size: 20px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #9ec5ab;
+}

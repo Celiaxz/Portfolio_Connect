@@ -7,7 +7,7 @@ import "./UserPage.css"
 
 function UserPage() {
   const { id } = useParams();
-  const { user } = useContext(AuthContext);
+  const { user, handleLogout } = useContext(AuthContext);
   const [wantedUser, setWantedUser] = useState(null);
   const navigate = useNavigate();
 
@@ -63,6 +63,9 @@ function UserPage() {
                   >
                     Update Profile
                   </Button>
+                  <Button className="logout_button" onClick={handleLogout}>
+                Logout
+              </Button>
             </Grid>
             <div height={SECONDARY_COL_HEIGHT} radius="md" animate="false">
               <h2>About Me:</h2>
