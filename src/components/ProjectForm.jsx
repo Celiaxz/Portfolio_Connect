@@ -85,7 +85,7 @@ function ProjectForm(props) {
    }
 
    return (
-      <>
+      <div className="form_container">
       <h1 className="project_h1">New Project</h1>
       <form className="project_form" onSubmit={handleSubmit}>
          <div className="form_inputs">
@@ -106,7 +106,6 @@ function ProjectForm(props) {
                      <TextInput
                         type="text"
                         value={tech}
-                        placeholder={`Technology`}
                         onChange={(e) => handleTechChange(e, index)}
                      />
                      <Button type="button" className="tech_button" onClick={() => handleRemoveTech(index)}>-</Button>
@@ -119,7 +118,7 @@ function ProjectForm(props) {
          </div>
          <Button className="submit_button" type="submit">{props.isNewProject ? "Create New Project" : "Update Project"}</Button>
       </form>
-      </>
+      </div>
    );
 }
 
