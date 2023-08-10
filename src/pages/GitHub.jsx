@@ -30,70 +30,70 @@ function GitHub() {
 
   if (projects) {
     if (!projects.message) {
-      
-        // Calculate the index range for projects to display on the current page
-        const startIndex = (currentPage - 1) * itemsPerPage;
-        const endIndex = startIndex + itemsPerPage;
-        const projectsToDisplay = projects?.slice(startIndex, endIndex) || [];
+      // Calculate the index range for projects to display on the current page
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const projectsToDisplay = projects?.slice(startIndex, endIndex) || [];
 
-        const avatar = projects?.[0].owner.avatar_url;
-        const isLoading = projects !== undefined;
+      const avatar = projects?.[0].owner.avatar_url;
+      const isLoading = projects !== undefined;
 
-        // Calculate totalPages based on the number of projects
-        const totalPages = Math.ceil((projects?.length || 0) / itemsPerPage);
+      // Calculate totalPages based on the number of projects
+      const totalPages = Math.ceil((projects?.length || 0) / itemsPerPage);
 
-        // Define click handlers for pagination
-        const handlePrevClick = () => {
-          setCurrentPage(currentPage - 1);
-        };
+      // Define click handlers for pagination
+      const handlePrevClick = () => {
+        setCurrentPage(currentPage - 1);
+      };
 
-        const handleNextClick = () => {
-          setCurrentPage(currentPage + 1);
-        };
+      const handleNextClick = () => {
+        setCurrentPage(currentPage + 1);
+      };
 
       return (
         <>
-            <div className="other-Users-container">
-              {/* <h2 className="user-Projects-Title">My Projects</h2> */}
-              <img src={avatar} alt="" />
-              <Row gutter={16}>
-                {projectsToDisplay.map((project) => (
-                  <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
-                    <Card
-                      className="other-Users-card"
-                      title={
-                        <span className="other-Users-card-title">
-                          {project.name}
-                        </span>
-                      }
+          <div className="other-Users-container">
+            {/* <h2 className="user-Projects-Title">My Projects</h2> */}
+            <img className="github-avatar" src={avatar} alt="" />
+            <Row gutter={16}>
+              {projectsToDisplay.map((project) => (
+                <Col xs={24} sm={12} md={8} lg={6} xl={6} key={project._id}>
+                  <Card
+                    className="other-Users-card"
+                    title={
+                      <span className="other-Users-card-title">
+                        {" "}
+                        {project.name}
+                      </span>
+                    }
+                  >
+                    <p>Programming Language: {project.language}</p>
+                    <Link
+                      className="others-nav"
+                      key={project.html_url}
+                      to={project.html_url}
                     >
-                      <p>{project.language}</p>
-                      <Link
-                        className="others-nav"
-                        key={project.html_url}
-                        to={project.html_url}
-                      >
-                        GitHub Project
-                      </Link>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
-    
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPrevClick={handlePrevClick}
-                onNextClick={handleNextClick}
-              />
-            </div>
+                      GitHub Repo Link
+                    </Link>
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+
+            <Pagination
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPrevClick={handlePrevClick}
+              onNextClick={handleNextClick}
+            />
+          </div>
         </>
-      )
+      );
     } else {
-      return <h2>{errorMessage}</h2>
+      return <h2>{errorMessage}</h2>;
     }
   } else {
-    return <h2>...Loading</h2>
+    return <h2>...Loading</h2>;
   }
 }
 

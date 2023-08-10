@@ -42,6 +42,7 @@ function OtherUsers() {
   const shouldLoad = users.length > 0;
   return (
     <div className="other-Users-container">
+      <h1 className="search-title">Github Projects from other users :</h1>
       {shouldLoad ? (
         <Row gutter={16}>
           {usersToDisplay.map((user) => (

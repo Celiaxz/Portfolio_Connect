@@ -92,8 +92,8 @@ function UserProject() {
                   }
                 >
                   <p>{project.technologies}</p>
-                  <p>{project.repositoryLink}</p>
-                  <p>{project.projectFolder}</p>
+                  <p>Repo Link: {project.repositoryLink}</p>
+                  <p>Project Folder: {project.projectFolder}</p>
                   <div className="project-card-actions">
                     <Button onClick={() => redirectToProject(project._id)}>
                       See more

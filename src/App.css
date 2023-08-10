@@ -45,7 +45,7 @@ button:hover {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* height: 200px; Set a fixed height for the card */
+  /* height: 200px;  */
   display: flex;
   flex-direction: column;
 }
@@ -58,7 +58,6 @@ button:hover {
 .project-card-title,
 .search-project-card-title {
   font-weight: 800;
-  /* background-color: #006a4e; */
   color: white;
   padding-left: 40%;
 }
@@ -102,6 +101,9 @@ button:hover {
 }
 .other-Users-container {
   padding-top: 10rem;
+  /* padding: 20px;
+ 
+  margin-top: 10rem; */
 }
 
 .other-Users-container p {
@@ -124,6 +126,12 @@ button:hover {
 .others-nav {
   background-color: #006a4e;
   color: white;
+}
+.github-avatar {
+  max-height: 300px;
+  max-width: 200px;
+
+  padding-left: 50%;
 }
 .hidden {
   display: none;
