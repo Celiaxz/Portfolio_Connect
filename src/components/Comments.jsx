@@ -30,7 +30,7 @@ function Comments({ projectId, allComments, setAllComments }) {
             })
          if (responseComments.status === 201) {
             try {
-               const response = await axios.get(`http://localhost:5005/project/${projectId}`);
+               const response = await axios.get(`${BASE_URL}/project/${projectId}`);
                setAllComments(response.data.comments);
                setCommentContent("");
             }
@@ -47,10 +47,10 @@ function Comments({ projectId, allComments, setAllComments }) {
    //Editing the comment
    const handleEditComment = async (commentId) => {
       try {
-         const responseComment = await axios.patch(`http://localhost:5005/project/${projectId}/comment/${commentId}/update`, { comment: editedComment })
+         const responseComment = await axios.patch(`${BASE_URL}/project/${projectId}/comment/${commentId}/update`, { comment: editedComment })
          if (responseComment.status === 200) {
             //fetching all comments again and set the state to refresh comments section
-            const response = await axios.get(`http://localhost:5005/project/${projectId}`)
+            const response = await axios.get(`${BASE_URL}/project/${projectId}`)
             setAllComments(response.data.comments)
             setCommentToEdit(null)
             setEditComment(false)
