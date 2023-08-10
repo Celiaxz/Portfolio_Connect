@@ -10,8 +10,8 @@ Portfolio Connect is a full-stack web application built using the MERN stack (Mo
 - [Features](#features)
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
 - [Contributors](#contributors)
 
 ## Features
@@ -88,7 +88,12 @@ Portfolio Connect is a full-stack web application built using the MERN stack (Mo
      npm run dev
    ```
 
-###contributors
+### Backlog
+-Search functionality on OtherUsers page
+-Uploading repositories
+-
+
+### Contributors
 
 - **farkasgz:** [Link](https://github.com/farkasgz)
 - **aymiwash:** [Link](https://github.com/aymiwash)
