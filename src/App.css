@@ -3,7 +3,6 @@
   color: #011502;
 }
 
-
 button {
   background-color: #32746d !important;
   font-size: 1rem;
@@ -13,7 +12,7 @@ button:hover {
   background: #104f55 !important;
 }
 
-.logout_button{
+.logout_button {
   margin-left: 20px;
 }
 
@@ -116,7 +115,7 @@ button:hover {
   max-height: 150px;
 }
 
-.other-Users-card img{
+.other-Users-card img {
   max-width: 90%;
   cursor: pointer;
 }
