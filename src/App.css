@@ -5,7 +5,8 @@
 
 button {
   background-color: #32746d !important;
-  font-size: 1rem;
+
+  /* color: aliceblue; */
 }
 
 button:hover {
@@ -136,6 +137,12 @@ button:hover {
   max-width: 200px;
 
   padding-left: 50%;
+}
+.project-card Button {
+  color: whitesmoke;
+}
+.search-project-card-actions Button {
+  color: whitesmoke;
 }
 .hidden {
   display: none;

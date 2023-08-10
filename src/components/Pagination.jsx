@@ -5,7 +5,7 @@ function Pagination({ currentPage, totalPages, onPrevClick, onNextClick }) {
       style={{
         display: "flex",
         justifyContent: "center",
-        marginTop: "5rem", // Adjust spacing as needed
+        marginTop: "5rem",
       }}
     >
       <Button
