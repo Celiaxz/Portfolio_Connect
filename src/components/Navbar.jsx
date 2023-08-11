@@ -10,12 +10,10 @@ function Navbar() {
   return (
     <>
       <div className="navbar-container">
-        <h2>
-          {" "}
-          <NavLink className="app-name" to="/">
-            <img className="app-name" src={logo} alt="image" />
-          </NavLink>
-        </h2>
+        {" "}
+        <NavLink to="/">
+          <img className="logo" src={logo} alt="image" />
+        </NavLink>
         <div className="nav-link">
           {isLoggedIn ? (
             <>

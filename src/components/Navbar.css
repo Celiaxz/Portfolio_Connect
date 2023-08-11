@@ -6,8 +6,10 @@
   align-items: center;
   color: #f0fcf4;
 }
-.app-name {
+.logo {
   padding-left: 50px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   height: 100px;
   width: 150px;
 }
@@ -20,7 +22,7 @@
   text-decoration: none;
   padding: 10px 30px;
   font-weight: 500;
-  font-size: 20px;
+  font-size: 30px;
   transition: color 0.3s ease;
 }
 
