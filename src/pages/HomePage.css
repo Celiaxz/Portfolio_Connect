@@ -10,7 +10,7 @@
   background-size: cover;
 
   color: 01200F;
-  height: calc(100vh - 48px);
+  height: calc(100vh - 144px);
   display: flex;
   flex-direction: column;
   justify-content: center;
