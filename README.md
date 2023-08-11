@@ -1,6 +1,6 @@
 # Portfolio Connect
 
-![Logo](favicon-16x16.png)
+![Logo](/public/favicon-16x16.png)
 Portfolio Connect is a full-stack web application built using the MERN stack (MongoDB, Express, React, Node.js). It allows users to create their portfolios, showcase coding projects, collaborate with others, and explore a diverse range of portfolios from different users. With user authentication, GitHub integration, and more, Portfolio Connect provides a comprehensive platform for developers to manage their coding journey.
 
 ## [Visit app](https://portfolio-connect.netlify.app/) :)
