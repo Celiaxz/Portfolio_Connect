@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/Auth.context";
-import "./Navbar.css"
-
+import "./Navbar.css";
+import logo from "../assets/logo.png";
 
 function Navbar() {
   const { user, isLoggedIn } = useContext(AuthContext);
@@ -10,20 +10,27 @@ function Navbar() {
   return (
     <>
       <div className="navbar-container">
-        <h2> <NavLink className="app-name" to="/">//PortfolioConnect //</NavLink></h2>
+        {" "}
+        <NavLink to="/">
+          <img className="logo" src={logo} alt="image" />
+        </NavLink>
         <div className="nav-link">
           {isLoggedIn ? (
             <>
-            <NavLink exact="true" to="/" className="nav-link" activeClassName="active-nav-link">
+              <NavLink
+                exact="true"
+                to="/"
+                className="nav-link"
+                activeClassName="active-nav-link"
+              >
                 Home
               </NavLink>
-              <NavLink to="/create-project" className="nav-link" >
+              <NavLink to="/create-project" className="nav-link">
                 Create Project
               </NavLink>
               <NavLink to={`/user/${user._id}`} className="nav-link">
                 Profile{" "}
               </NavLink>
-
 
               <NavLink to={`/otherUsers/${user._id}`} className="nav-link">
                 Others Github
