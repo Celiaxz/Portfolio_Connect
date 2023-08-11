@@ -31,8 +31,8 @@ function App() {
         <Route path="/user/update" element={<UpdateUser />} />
         <Route path="/user/:id/projects" element={<UserProject />} />
         <Route path="/github/:id" element={<GitHub />} />
-        <Route path="/otherUsers/:id" element={<OthersGithub />} />
         <Route path="*" element={<h1>404 page</h1>} />
+        <Route path="/otherUsers/:id" element={<OthersGithub />} />
       </Routes>
       <Footer />
     </>
