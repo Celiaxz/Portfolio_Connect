@@ -63,7 +63,7 @@ function UserPage() {
                   >
                     Update Profile
                   </Button>
-                  <Button className="logout_button" onClick={handleLogout}>
+                  <Button className={id !== user._id ? "hidden" : "logout_button"} onClick={handleLogout}>
                 Logout
               </Button>
             </Grid>
