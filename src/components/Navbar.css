@@ -7,9 +7,9 @@
   color: #f0fcf4;
 }
 .app-name {
-  padding-left: 30px;
-  color: #f0fcf4;
-  text-decoration: none;
+  padding-left: 50px;
+  height: 100px;
+  width: 150px;
 }
 
 .nav-link {
