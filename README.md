@@ -9,9 +9,9 @@ Portfolio Connect is a full-stack web application built using the MERN stack (Mo
 
 - [Features](#features)
 - [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-- [Prerequisites](#prerequisites)
-- [Installation](#installation)
+- [Client](#client)
+- [Server](#server)
+- [Backlog](#backlog)
 - [Contributors](#contributors)
 
 ## Features
@@ -35,63 +35,135 @@ Portfolio Connect is a full-stack web application built using the MERN stack (Mo
 - **Deployment:** Backend deployed on Adaptable for reliability; frontend hosted on Netlify for seamless user experience.
 - Public APIs
 
-## Getting Started
+## Client
+### Routes
+- / - Homepage
+- /signup - Signup form
+- /login - Login form
+- /create-project - Create a project
+- /projects/:projectId - Project detail
+- /projects/:projectId/update - Update project details
+- /search-projects - Browse among every project on the site
+- /user/:id - User details
+- /user/update - Update user details
+- /user/:id/projects - All projects of a user
+- /otherusers/:id - List of all users
+- /github/:id - GitHub projects of a user
 
-### Prerequisites
+### Pages
+- Home Page (public)
+- Sign up Page (public)
+- Log in Page (public)
+- User Page (user only)
+- Update User Page (user only)
+- User Project Page (user only)
+- Project Page (user only)
+- Update Project Page (user only)
+- Search Project Page (user only)
+- Github Page (user only)
 
-- Node.js and npm installed on your machine.
-- MongoDB database.
+### Components
+- Project From component
+- Comments component
+- Navbar component
+- Footer component
+- Pagination component
 
-### Installation
+## Server
+### Models
 
-1. **Clone the repository:**
+User model
 
-   ```bash
-   git clone https://github.com/Celiaxz/Portfolio-Connect_Font.git
-   git clone https://github.com/Celiaxz/Portfolio-Connect_Back.git
-   ```
+```
+username - String // required
+email - String // required & unique
+password - String // required
+githubUsername - String // required
+projects - [ObjectID<Project>]
+comments - [ObjectID<Comment>]
+skills - [String]
+image - String
+aboutMe- Strying
+```
 
-2. **Navigate to the project directory:**
+Project model
 
-   ```bash
-   cd portfolio-connect_Font
-   cd portfolio-connect_Back
-   ```
+```
+title - String // required
+description - String // required
+technologies - [String] // required
+grepositoryLik - String
+projectFolder - String
+userId - ObjectID<User>
+comments - [ObjectID<Comment>]
+```
 
-3. **Install dependencies for the frontend:**
+Comment model
 
-   ```bash
+```
+userId - ObjectID<User>
+projectId - ObjectID<Project>
+comment - Sting
+date - Date
+```
 
-   npm install
-   ```
+### Backend Routes
+- GET /auth/verify
+- POST /auth/signup
+   - body:
+      - username
+      - email
+      - password
+      - githubUsername
+- POST /auth/login
+   - body:
+      - username
+      - password
+- GET /user/:id
+- PUT /user/update/:id
+   - body:
+      - username
+      - githubUsername
+      - email
+      - skills
+      - image
+      - aboutMe
+- GET /user/users/all
+- POST /project/create
+   - body:
+      - title
+      - description
+      - technologies
+      - repositoryLink
+      - projectFolder
+      - userId
+- GET /project/:id
+- GET /project/userId/:id
+- PUT /project/update/:id
+   - body:
+      - title
+      - description
+      - technologies
+      - repositoryLink
+      - projectFolder
+      - userId
+- DELETE /project/delete/:id
+- GET /project/all/projects
+- POST /:projectId/comment
+   - body:
+      - userId
+      - projectId
+      - comment
+- GET /:projectId/comment/:commentId
+- PATCH /:projectId/comment/:commentId/update
+   - body:
+      - comment
+- DELETE /:projectId/comment/:commentId/delete
+- DELETE /:projectId/comments/delete
 
-4. **Install dependencies for the backend:**
-
-   ```bash
-   npm install
-   ```
-
-5. **Set up environment variables:**
-
-   Create a `.env` file in the backend directory and configure your MongoDB connection string and any other required variables.
-
-6. **Start the frontend development server:**
-
-   ```bash
-
-   npm run dev
-   ```
-
-7. **Start the backend server:**
-
-   ```bash
-     npm run dev
-   ```
-
-### Backlog
--Search functionality on OtherUsers page
--Uploading repositories
--
+## Backlog
+- Search functionality on OtherUsers page
+- Uploading repositories
 
 ### Contributors
 
